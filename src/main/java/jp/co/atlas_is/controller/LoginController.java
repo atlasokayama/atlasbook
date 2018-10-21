@@ -24,11 +24,11 @@ public class LoginController {
 		return new ModelAndView("login", "error", error);
 	}
 	
-	@GetMapping("/loginSuccess")
-	public String loginSuccessForm(Principal principal, Model model) {
+	@GetMapping("/top")
+	public String topForm(Principal principal, Model model) {
 		Authentication authentication = (Authentication)principal;
 		String username = authentication.getName();
 		model.addAttribute("username", username);
-		return "loginSuccess";
+		return "top";
 	}
 }

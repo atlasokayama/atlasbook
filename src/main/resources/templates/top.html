@@ -5,7 +5,11 @@
         <title>Hello World!</title>
     </head>
     <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form name="topForm" method="post" th:action="@{top}">
+            <input type="submit" name="list" value="月例出欠一覧"/>
+            <input type="submit" name="edit" value="月例出欠入力"/>
+   	        <input type="submit" name="master" value="マスタ管理"/>
+        </form>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="ログアウト"/>
         </form>

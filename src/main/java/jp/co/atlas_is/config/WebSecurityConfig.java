@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 認証処理
 				.loginProcessingUrl("/authenticate")
 				// ログイン成功
-				.defaultSuccessUrl("/loginSuccess")
+				.defaultSuccessUrl("/top")
 				// ログイン失敗
 				.failureUrl("/login?error")
 				// usernameのパラメータ名
