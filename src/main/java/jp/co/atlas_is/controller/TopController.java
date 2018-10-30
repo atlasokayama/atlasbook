@@ -26,4 +26,5 @@ public class TopController {
 		ModelAndView mav = new ModelAndView("master");
 		return mav;
     }
+	
 }
