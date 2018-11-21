@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>月例出欠一覧</title>
-    </head>
+	<head>
+		<title>月例出欠一覧</title>
+	</head>
 	<body>
-    	<p>月例出欠一覧</p>
-    </body>
+		<p>月例出欠一覧</p>
+		<span th:text="'氏名:' + *{form.employeeInfo.name}"></span><br>
+		<span th:text="'職員番号:' + *{form.employeeInfo.employeeNo}"></span>
+	</body>
 </html>
