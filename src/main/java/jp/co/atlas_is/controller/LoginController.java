@@ -15,15 +15,28 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
+	/**
+	 * ルート画面遷移処理
+	 * @return ビュー
+	 */
 	@GetMapping("/")
 	public String rootForm(Model model) {
 		return "login";
 	}
+	
+	/**
+	 * ログイン画面遷移処理
+	 * @return モデル／ビュー
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView showLoginPage(@RequestParam Optional<String> error) {
 		return new ModelAndView("login", "error", error);
 	}
-	
+
+	/**
+	 * トップ画面遷移処理
+	 * @return ビュー
+	 */
 	@GetMapping("/top")
 	public String topForm(Principal principal, Model model) {
 		Authentication authentication = (Authentication)principal;

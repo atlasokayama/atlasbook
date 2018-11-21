@@ -12,8 +12,13 @@ import jp.co.atlas_is.form.ListForm;
 @RequestMapping("top")
 public class TopController {
 	
+	/**
+	 * 一覧画面遷移処理
+	 * @return モデル／ビュー
+	 */
 	@RequestMapping(params = "list", method = RequestMethod.POST)
 	ModelAndView list() {
+		
 		// formを作成
 		ListForm form = new ListForm();
 		// 職員情報を作成
@@ -29,12 +34,20 @@ public class TopController {
 		return mav;
 	}
 	
+	/**
+	 * 出欠入力画面遷移処理
+	 * @return モデル／ビュー
+	 */
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
 	ModelAndView edit() {
 		ModelAndView mav = new ModelAndView("edit");
 		return mav;
 	}
 	
+	/**
+	 * マスタ管理画面遷移処理
+	 * @return モデル／ビュー
+	 */
 	@RequestMapping(params = "master", method = RequestMethod.POST)
 	ModelAndView master() {
 		ModelAndView mav = new ModelAndView("master");
