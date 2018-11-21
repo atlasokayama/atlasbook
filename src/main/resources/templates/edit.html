@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>月例出欠入力</title>
+        <title>月例出欠 ＞　出欠入力</title>
     </head>
     <body>
-    	<p>月例出欠入力</p>
+       <h1 class = "midasi"> 月例出欠 ＞　出欠入力</h1>
+    	<p class = "namae">新田</p>
+    	<table>
+	    	<tr>
+    			<th class="am" >ＡＭ</th>
+    			    <td><input type = "checkbox" name = "ams"> 出席
+    			      	<input type = "checkbox" name = "amk"> 欠席
+    			    	<input type ="text" name="riyuu1" value="理由"></td>
+    		</tr>
+    		<tr>
+    			<th class="pm" >ＰＭ</th>
+    			    <td><input type = "checkbox" name = "pms"> 出席
+    			      	<input type = "checkbox" name = "pmk"> 欠席
+    			    	<input type ="text" name="riyuu2" value="理由"></td>
+    		</tr>
+    	</table>
+    	<p class = "botton"> 
+    		<input type = "button" value = "登録">
+    	</p>
     </body>
 </html>
