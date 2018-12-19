@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>マスタ管理</title>
+		<title>月例出欠　＞　マスタ管理</title>
 	</head>
 	<body>
-		<p>マスタ管理</p>
+		<h1>月例出欠　＞　マスタ管理</h1>
+		<p>6人</p>
+		<form name="addEmpForm" method="post" th:action="@{master}">
+			<input type="button" name="addEmp" value=""/>
+		<ul>
+			<li><input type="checkbox" name="ams">新田</li>
+			<li><input type="checkbox" name="ams">秋久</li>
+			<li><input type="checkbox" name="ams">古賀</li>
+			<li><input type="checkbox" name="ams">清板</li>
+			<li><input type="checkbox" name="ams">柚木</li>
+		</ul>
+    	<p class="sakujo_p"> 
+    		<input type="submit" value="削除">
+    	</p>
+    	</form>
 	</body>
 </html>

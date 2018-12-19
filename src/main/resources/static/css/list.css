@@ -1,0 +1,41 @@
+
+.contents{
+	width: auto;
+}
+
+.list_table{
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.list_tr{
+	border: solid #EEE;
+	border-width:2px 0px 0px 0px;
+}
+
+.list_table th,td{
+	padding: 15px 10px;
+	vertical-align: middle;
+}
+
+.th_name,.td_name{
+	text-align: left;
+	width: 50px;
+}
+
+.th_riyu,.td_riyu{
+	text-align: left;
+	max-width: 375px;
+}
+
+.th_am,.th_pm,.td_am,.td_pm{
+	text-align: center;
+	width: 30px;
+}
+
+@media screen and (min-width: 480px)　{ 
+	.contents{
+		width: 960px;
+		margin: 0 auto;
+	}	
+}

@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>月例出欠一覧</title>
-	</head>
+		<title>月例出欠</title>
+ 		<link href="/css/list.css" th:href="@{/css/list.css}" rel="stylesheet">
+ 	</head>
 	<body>
+	   <div class="contents">
+       <h1 class = "midasi"> 月例出欠</h1>
+    	<table class="list_table">
+	    	<tr class="list_tr">
+    			<th class="th_name"></th>
+    			<th class="th_am">AM</th>
+    			<th class="th_riyu">欠席理由</th>
+    			<th class="th_pm">PM</th>
+    			<th class="th_riyu">欠席理由</th>
+    		</tr>
+    		<tr class="list_tr">
+    			<td class="td_name">新田</td>
+    			<td class="td_am">◯</td>
+    			<td class="td_riyu"></td>
+    			<td class="td_pm">◯</td>
+    			<td class="td_riyu"></td>
+    		</tr>
+    		<tr class="list_tr">
+    			<td class="td_name">秋久</td>
+    			<td class="td_am">◯</td>
+    			<td class="td_riyu"></td>
+    			<td class="td_pm">✕</td>
+    			<td class="td_riyu">打ち合わせのため</td>
+    		</tr>
+    		<tr class="list_tr">
+    			<td class="td_name">古賀</td>
+    			<td class="td_am">◯</td>
+    			<td class="td_riyu"></td>
+    			<td class="td_pm">◯</td>
+    			<td class="td_riyu"></td>
+    		</tr>
+    		<tr class="list_tr">
+    			<td class="td_name">清板</td>
+    			<td class="td_am">◯</td>
+    			<td class="td_riyu"></td>
+    			<td class="td_pm">◯</td>
+    			<td class="td_riyu"></td>
+    		</tr>
+    		<tr class="list_tr">
+    			<td class="td_name">柚木</td>
+    			<td class="td_am">✕</td>
+    			<td class="td_riyu">本番移行作業のため</td>
+    			<td class="td_pm">✕</td>
+    			<td class="td_riyu">本番移行作業のため</td>
+    		</tr>
+    		<tr class="list_tr sum_tr">
+    			<td class="td_name">5人</td>
+    			<td class="td_am">4人</td>
+    			<td class="td_riyu"></td>
+    			<td class="td_pm">3人</td>
+    			<td class="td_riyu"></td>
+    		</tr>
+    	</table>
+    	</div>
+    	<!-- contents -->
+<!--
 		<p>月例出欠一覧</p>
 		<span th:text="'氏名:' + *{form.employeeInfo.name}"></span><br>
 		<span th:text="'職員番号:' + *{form.employeeInfo.employeeNo}"></span>
+ -->
 	</body>
 </html>
