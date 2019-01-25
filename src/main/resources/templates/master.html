@@ -12,14 +12,13 @@
 		<h1 class="midasi">月例出欠 ＞ マスタ管理</h1>
 		<p class="emp-cnt">6人</p>    
 		<form name="addEmpForm" method="post" th:action="@{master}">
-			<input type="submit" name="addEmp" value="＋" class="addEmp-button"/>
+			<input type="submit" name="addEmp" value="＋" class="addEmp-button">
     	</form>
 		<ul class="ul-emp">
-			<li class="li-emp"><input type="checkbox" name="ams" class="chkbox">新田</li>
-			<li class="li-emp"><input type="checkbox" name="ams" class="chkbox">秋久</li>
-			<li class="li-emp"><input type="checkbox" name="ams" class="chkbox">古賀</li>
-			<li class="li-emp"><input type="checkbox" name="ams" class="chkbox">清板</li>
-			<li class="li-emp li-end"><input type="checkbox" name="ams" class="chkbox">柚木</li>
+            <li th:each="row : *{form.attendanceInfoList}" th:object="${row}" class="li-emp">
+				<input type="checkbox" name="ams" th:text="*{employeeInfo.name}" class="chkbox">
+				
+			</li>
 		</ul>
 		<form name="delForm" method="post" th:action="@{master}">
     		<input type="submit" value="削除">

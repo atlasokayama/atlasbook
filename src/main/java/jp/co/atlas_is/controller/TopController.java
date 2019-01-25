@@ -1,8 +1,13 @@
 package jp.co.atlas_is.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +47,32 @@ public class TopController {
 	 */
 	@RequestMapping(params = "master", method = RequestMethod.POST)
 	ModelAndView master() {
-		ModelAndView mav = new ModelAndView("master");
+		// formを作成
+		ListForm form = new ListForm();
+		List<EditForm> list = new ArrayList<EditForm>();
+		EditForm edit = new EditForm();
+		
+		// 職員情報を作成
+		EmployeeInfoDto dto = new EmployeeInfoDto();
+		// 職員情報を格納
+		dto.setEmployeeNo("123456");
+		dto.setName("岡山　太郎");
+		// 職員情報をformに格納
+		edit.setEmployeeInfo(dto);
+		list.add(edit);
+
+		// 2件目
+		dto = new EmployeeInfoDto();
+		dto.setEmployeeNo("999999");
+		dto.setName("岡山　次郎");
+		edit = new EditForm();
+		edit.setEmployeeInfo(dto);		
+		list.add(edit);
+		
+		form.setAttendanceInfoList(list);
+
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("master", "form", form);
 		return mav;
 	}
 
@@ -52,6 +82,15 @@ public class TopController {
 	 */
 	@RequestMapping(params = "sample", method = RequestMethod.POST)
 	ModelAndView sample() {
+		
+		// 設定ファイルの読み込み
+		Resource resource = new ClassPathResource("/application.properties");
+		try {
+			Properties props = PropertiesLoaderUtils.loadProperties(resource);
+			props.getProperty("app.test");
+		} catch (IOException e) {
+		}
+
 		// formを作成
 		ListForm form = new ListForm();
 		List<EditForm> list = new ArrayList<EditForm>();
