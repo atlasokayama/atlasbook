@@ -1,0 +1,19 @@
+.edit_table{
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.edit_td{
+	text-align: left;
+	width: 400px;
+}
+
+.edit_table th,td{
+	padding: 10px 8px 10px 0;
+	vertical-align: middle;
+}
+
+.riyuu{
+	max-width: 350px;
+	margin-left: 10px;
+}

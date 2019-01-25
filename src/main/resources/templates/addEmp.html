@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>月例出欠　＞　マスタ管理　＞　出席者追加</title>
+		<title>月例出欠 ＞ マスタ管理 ＞ 出席者追加</title>
+ 		<link href="/css/reboot.css" th:href="@{/css/reboot.css}" rel="stylesheet">
+ 		<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet">
 	</head>
 	<body>
-		<h1>月例出欠　＞　マスタ管理　＞　出席者追加</h1>
+		<div class="contents">
+		<div class="wrap">
+		<h1 class="midasi">月例出欠 ＞ マスタ管理 ＞ 出席者追加</h1>
 		<p>名前</p>
-		<form action="" method="post" th:action="">
-		<input type ="text" name="namae">
-    	<p class="tsuika_p"> 
-    		<input type="submit" value="追加">
-    	</p>
+		<form action="master" method="post" th:action="master">
+		<input type ="text" name="addNamae">
+    	<input type="submit" name="add" value="追加">
     	</form>
+    	</div>
+    	<!-- wrap -->
+    	</div>
+    	<!-- contents -->
 	</body>
 </html>

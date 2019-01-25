@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>月例出欠 ＞　出欠入力</title>
+        <title>月例出欠 ＞ 出欠入力</title>
+ 		<link href="/css/reboot.css" th:href="@{/css/reboot.css}" rel="stylesheet">
+ 		<link href="/css/common.css" th:href="@{/css/common.css}" rel="stylesheet">
+ 		<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet">
     </head>
     <body>
-       <h1 class = "midasi"> 月例出欠 ＞　出欠入力</h1>
-    	<p class = "namae">新田</p>
-    	<table>
-	    	<tr>
+		<div class="contents">
+		<div class="wrap">
+       <h1 class="midasi">月例出欠 ＞ 出欠入力</h1>
+    	<p class="namae">新田</p>
+    	<table class="edit_table">
+	    	<tr class="edit_tr">
     			<th class="am" >ＡＭ</th>
-    			    <td><input type = "checkbox" name = "ams"> 出席
-    			      	<input type = "checkbox" name = "amk"> 欠席
-    			    	<input type ="text" name="riyuu1" value="理由"></td>
+    			    <td class="edit_td"><label><input type="radio" name="ams" class="radiobtn">出席</label><br>
+    			      	<label><input type="radio" name="amk" class="radiobtn">欠席</label>
+    			    	<input type="text" name="riyuu1" class="riyuu" value="理由"></td>
     		</tr>
-    		<tr>
+    		<tr class="edit_tr">
     			<th class="pm" >ＰＭ</th>
-    			    <td><input type = "checkbox" name = "pms"> 出席
-    			      	<input type = "checkbox" name = "pmk"> 欠席
-    			    	<input type ="text" name="riyuu2" value="理由"></td>
+    			    <td class="edit_td"><label><input type="radio" name="pms" class="radiobtn">出席</label><br>
+    			      	<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
+    			    	<input type="text" name="riyuu2" class="riyuu" value="理由"></td>
     		</tr>
     	</table>
-    	<p class = "toroku_p"> 
-    		<input type = "button" value = "登録">
-    	</p>
+		<form name="editForm" method="post" th:action="@{list}">
+    		<input type="submit" name="edit" value="登録">
+    	</form>
+    	</div>
+    	<!-- wrap -->
+    	</div>
+    	<!-- contents -->
     </body>
 </html>

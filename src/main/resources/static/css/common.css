@@ -1,0 +1,18 @@
+.contents{
+	position:relative;
+	margin: 0 auto;
+	max-width: 486px;
+}
+
+.wrap{
+	margin: 0 10px;
+}
+
+.midasi{
+	font-size: 1.5em;
+	margin: 10px 0;
+}
+
+.chkbox, .radiobtn {
+	margin: 0 5px 0 10px;
+}
