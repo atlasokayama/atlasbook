@@ -3,7 +3,7 @@ package jp.co.atlas_is.dto;
 import lombok.Data;
 
 /**
- * 社員情報DTO
+ * 社員DTO
  */
 @Data
 public class EmployeeInfoDto {

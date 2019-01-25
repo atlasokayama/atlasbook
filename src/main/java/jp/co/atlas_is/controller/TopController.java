@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import jp.co.atlas_is.dto.AttendanceInfoDto;
 import jp.co.atlas_is.dto.EmployeeInfoDto;
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
@@ -27,7 +28,50 @@ public class TopController {
 	 */
 	@RequestMapping(params = "list", method = RequestMethod.POST)
 	ModelAndView list() {
-		ModelAndView mav = new ModelAndView("list");
+		// formを作成
+		ListForm form = new ListForm();
+		
+		// 職員情報を作成
+		EmployeeInfoDto dto = new EmployeeInfoDto();
+		// 出欠情報を作成
+		AttendanceInfoDto attendDto = new AttendanceInfoDto();
+		// 出欠一覧フォーム
+		List<EditForm> list = new ArrayList<EditForm>();
+		EditForm edit = new EditForm();
+
+		// 職員情報を格納
+		dto.setEmployeeNo("123456");
+		dto.setName("岡山");
+		// 出欠情報を格納
+		attendDto.setAttendanceAm("◯");
+		attendDto.setReasonAm("");
+		attendDto.setAttendanceAm("×");
+		attendDto.setReasonAm("本番移行のため");
+		// 出欠情報をformに格納
+		edit.setEmployeeInfo(dto);
+		edit.setAttendanceInfo(attendDto);
+		list.add(edit);
+
+		// 2件目
+		dto = new EmployeeInfoDto();
+		dto.setEmployeeNo("999999");
+		dto.setName("広島");
+		// 出欠情報を格納
+		attendDto = new AttendanceInfoDto();
+		attendDto.setAttendanceAm("◯");
+		attendDto.setReasonAm("");
+		attendDto.setAttendanceAm("◯");
+		attendDto.setReasonAm("");
+		// 出欠情報をformに格納
+		edit = new EditForm();
+		edit.setAttendanceInfo(attendDto);
+		edit.setEmployeeInfo(dto);		
+		list.add(edit);
+		
+		form.setAttendanceInfoList(list);
+
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
 	}
 	

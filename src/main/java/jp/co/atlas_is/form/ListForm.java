@@ -10,8 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ListForm{
-	
+public class ListForm{	
 	/** 出欠情報 */
 	private List<EditForm> attendanceInfoList;
 }
