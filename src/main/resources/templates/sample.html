@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>月例出欠一覧</title>
+	</head>
+	<body>
+		<p>月例出欠一覧</p>
+		<table>
+			<colgroup>
+				<col style="width: 300px;" />
+				<col style="width: 100px;" />
+			</colgroup>
+			<tr>
+				<th>氏名</th>
+				<th>職員番号</th>
+			</tr>
+			<!--/* データ行部 Start */-->
+			<tr th:each="row : *{form.attendanceInfoList}" th:object="${row}">
+				<td th:text="*{employeeInfo.name}" class="center">氏名</td>
+				<td th:text="*{employeeInfo.employeeNo}" class="center">職員番号</td>
+			</tr>
+		</table>
+	</body>
+</html>
