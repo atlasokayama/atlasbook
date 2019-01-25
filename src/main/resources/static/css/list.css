@@ -23,12 +23,12 @@
 
 .th_name,.td_name{
 	text-align: left;
-	width: 60px;
+	width: 70px;
 }
 
 .th_riyu,.td_riyu{
 	text-align: left;
-	max-width: 375px;
+	width: 165px;
 }
 
 .th_am,.th_pm,.td_am,.td_pm{
