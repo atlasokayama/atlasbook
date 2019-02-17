@@ -39,37 +39,45 @@ public class TopController {
 		List<EditForm> list = new ArrayList<EditForm>();
 		EditForm edit = new EditForm();
 
-		// 職員情報を格納
-		dto.setEmployeeNo("123456");
-		dto.setName("岡山");
-		// 出欠情報を格納
-		attendDto.setAttendanceAm("◯");
-		attendDto.setReasonAm("");
-		attendDto.setAttendanceAm("×");
-		attendDto.setReasonAm("本番移行のため");
-		// 出欠情報をformに格納
-		edit.setEmployeeInfo(dto);
-		edit.setAttendanceInfo(attendDto);
-		list.add(edit);
+		// 設定ファイルの読み込み
+		Resource resource = new ClassPathResource("/top.properties");
+		try {
+			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 
-		// 2件目
-		dto = new EmployeeInfoDto();
-		dto.setEmployeeNo("999999");
-		dto.setName("広島");
-		// 出欠情報を格納
-		attendDto = new AttendanceInfoDto();
-		attendDto.setAttendanceAm("◯");
-		attendDto.setReasonAm("");
-		attendDto.setAttendanceAm("◯");
-		attendDto.setReasonAm("");
-		// 出欠情報をformに格納
-		edit = new EditForm();
-		edit.setAttendanceInfo(attendDto);
-		edit.setEmployeeInfo(dto);		
-		list.add(edit);
+			// 職員情報を格納
+			dto.setEmployeeNo(props.getProperty("Employee1.No"));
+			dto.setName(props.getProperty("Employee1.Name"));
+			// 出欠情報を格納
+			attendDto.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
+			attendDto.setReasonAm(props.getProperty("Attend1.ReasonAM"));
+			attendDto.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
+			attendDto.setReasonPm(props.getProperty("Attend1.ReasonPM"));						
+			// 出欠情報をformに格納
+			edit.setEmployeeInfo(dto);
+			edit.setAttendanceInfo(attendDto);
+			list.add(edit);
+	
+			// 2件目
+			dto = new EmployeeInfoDto();
+			dto.setEmployeeNo(props.getProperty("Employee2.No"));
+			dto.setName(props.getProperty("Employee2.Name"));
+			// 出欠情報を格納
+			attendDto = new AttendanceInfoDto();
+			attendDto.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
+			attendDto.setReasonAm(props.getProperty("Attend2.ReasonAM"));
+			attendDto.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
+			attendDto.setReasonPm(props.getProperty("Attend2.ReasonPM"));			
+			// 出欠情報をformに格納
+			edit = new EditForm();
+			edit.setAttendanceInfo(attendDto);
+			edit.setEmployeeInfo(dto);		
+			list.add(edit);
+			
+			form.setAttendanceInfoList(list);
+
+		} catch (IOException e) {
+		}		
 		
-		form.setAttendanceInfoList(list);
-
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
