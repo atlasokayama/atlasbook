@@ -106,27 +106,37 @@ public class TopController {
 		
 		// 職員情報を作成
 		EmployeeInfoDto dto = new EmployeeInfoDto();
-		// 職員情報を格納
-		dto.setEmployeeNo("123456");
-		dto.setName("岡山　太郎");
-		// 職員情報をformに格納
-		edit.setEmployeeInfo(dto);
-		list.add(edit);
-
-		// 2件目
-		dto = new EmployeeInfoDto();
-		dto.setEmployeeNo("999999");
-		dto.setName("岡山　次郎");
-		edit = new EditForm();
-		edit.setEmployeeInfo(dto);		
-		list.add(edit);
 		
-		form.setAttendanceInfoList(list);
+		//プロパティ読み込み190228
+		Resource resource = new ClassPathResource("/top.properties");
+		try {
+			Properties props = PropertiesLoaderUtils.loadProperties(resource);
+			
+			// 職員情報を格納
+			dto.setEmployeeNo(props.getProperty("Employee1.No"));
+			dto.setName(props.getProperty("Employee1.Name"));
+			// 職員情報をformに格納
+			edit.setEmployeeInfo(dto);
+			list.add(edit);
 
-		// 遷移先情報を設定
-		ModelAndView mav = new ModelAndView("master", "form", form);
-		return mav;
-	}
+			// 2件目
+			dto = new EmployeeInfoDto();
+			dto.setEmployeeNo(props.getProperty("Employee2.No"));
+			dto.setName(props.getProperty("Employee2.Name"));
+			edit = new EditForm();
+			edit.setEmployeeInfo(dto);		
+			list.add(edit);
+		
+			form.setAttendanceInfoList(list);
+		} catch (IOException e) {
+		}
+		
+			// 遷移先情報を設定
+			ModelAndView mav = new ModelAndView("master", "form", form);
+			return mav;
+
+		}
+	
 
 	/**
 	 * 演習用サンプル
