@@ -10,22 +10,22 @@
 		<div class="contents">
 		<div class="wrap">
        <h1 class="midasi">月例出欠 ＞ 出欠入力</h1>
-    	<p class="namae">新田</p>
-    	<table class="edit_table">
-	    	<tr class="edit_tr">
-    			<th class="am" >ＡＭ</th>
-    			    <td class="edit_td"><label><input type="radio" name="ams" class="radiobtn">出席</label><br>
-    			      	<label><input type="radio" name="amk" class="radiobtn">欠席</label>
-    			    	<input type="text" name="riyuu1" class="riyuu" value="理由"></td>
-    		</tr>
-    		<tr class="edit_tr">
-    			<th class="pm" >ＰＭ</th>
-    			    <td class="edit_td"><label><input type="radio" name="pms" class="radiobtn">出席</label><br>
-    			      	<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
-    			    	<input type="text" name="riyuu2" class="riyuu" value="理由"></td>
-    		</tr>
-    	</table>
-		<form name="editForm" method="post" th:action="@{list}">
+		<form name="editForm" method="post" th:action="@{edit}">
+	    	<p class="namae">新田</p>
+	    	<table class="edit_table">
+		    	<tr class="edit_tr">
+	    			<th class="am" >ＡＭ</th>
+	    			    <td class="edit_td"><label><input type="radio" name="ams" class="radiobtn">出席</label><br>
+	    			      	<label><input type="radio" name="amk" class="radiobtn">欠席</label>
+	    			    	<input type="text" name="riyuu1" class="riyuu" value="理由"></td>
+	    		</tr>
+	    		<tr class="edit_tr">
+	    			<th class="pm" >ＰＭ</th>
+	    			    <td class="edit_td"><label><input type="radio" name="pms" class="radiobtn">出席</label><br>
+	    			      	<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
+	    			    	<input type="text" name="riyuu2" class="riyuu" value="理由"></td>
+	    		</tr>
+	    	</table>
     		<input type="submit" name="edit" value="登録">
     	</form>
     	</div>

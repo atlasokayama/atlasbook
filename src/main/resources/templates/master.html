@@ -10,18 +10,16 @@
 		<div class="contents">
 		<div class="wrap">
 		<h1 class="midasi">月例出欠 ＞ マスタ管理</h1>
-		<p class="emp-cnt">6人</p>    
-		<form name="addEmpForm" method="post" th:action="@{master}">
-			<input type="submit" name="addEmp" value="＋" class="addEmp-button">
-    	</form>
-		<ul class="ul-emp">
-            <li th:each="row : *{form.attendanceInfoList}" th:object="${row}" class="li-emp">
-				<input type="checkbox" name="ams" th:text="*{employeeInfo.name}" class="chkbox">
-				
-			</li>
-		</ul>
-		<form name="delForm" method="post" th:action="@{master}">
-    		<input type="submit" value="削除">
+		<form method="post" th:action="@{master}">
+			<p class="emp-cnt">6人</p>    
+				<input type="submit" name="addEmp" value="＋" class="addEmp-button">
+			<ul class="ul-emp">
+	            <li th:each="row : *{form.attendanceInfoList}" th:object="${row}" class="li-emp">
+					<input type="checkbox" name="ams" th:text="*{employeeInfo.name}" class="chkbox">
+					
+				</li>
+			</ul>
+	    	<input type="submit" name="delEmp" value="削除">
     	</form>
     	</div>
     	<!-- wrap -->
