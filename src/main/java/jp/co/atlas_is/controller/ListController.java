@@ -63,4 +63,16 @@ public class ListController {
 			ModelAndView mav = new ModelAndView("master", "form", form);
 			return mav;
 	}	
+
+	/**
+	 * 出欠入力画面遷移処理
+	 * @return モデル／ビュー
+	 */
+	@RequestMapping(params = "edit", method = RequestMethod.POST)
+	ModelAndView edit() {
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("edit");
+		return mav;
+	}	
+
 }
