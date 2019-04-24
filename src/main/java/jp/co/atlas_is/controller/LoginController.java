@@ -70,15 +70,15 @@ public class LoginController {
 		Resource resource = new ClassPathResource("/top.properties");
 		try {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
-
+			
 			// 職員情報を格納
 			dto.setEmployeeNo(props.getProperty("Employee1.No"));
 			dto.setName(props.getProperty("Employee1.Name"));
 			// 出欠情報を格納
 			attendDto.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
-			attendDto.setReasonAm(props.getProperty("Attend1.ReasonAM"));
+			attendDto.setReasonAm(props.getProperty("Attend1.ReasonAm"));
 			attendDto.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
-			attendDto.setReasonPm(props.getProperty("Attend1.ReasonPM"));						
+			attendDto.setReasonPm(props.getProperty("Attend1.ReasonPm"));						
 			// 出欠情報をformに格納
 			edit.setEmployeeInfo(dto);
 			edit.setAttendanceInfo(attendDto);
@@ -91,14 +91,30 @@ public class LoginController {
 			// 出欠情報を格納
 			attendDto = new AttendanceInfoDto();
 			attendDto.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
-			attendDto.setReasonAm(props.getProperty("Attend2.ReasonAM"));
+			attendDto.setReasonAm(props.getProperty("Attend2.ReasonAm"));
 			attendDto.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
-			attendDto.setReasonPm(props.getProperty("Attend2.ReasonPM"));			
+			attendDto.setReasonPm(props.getProperty("Attend2.ReasonPm"));			
 			// 出欠情報をformに格納
 			edit = new EditForm();
 			edit.setAttendanceInfo(attendDto);
 			edit.setEmployeeInfo(dto);		
 			list.add(edit);
+
+			// 3件目
+			dto = new EmployeeInfoDto();
+			dto.setEmployeeNo(props.getProperty("Employee3.No"));
+			dto.setName(props.getProperty("Employee3.Name"));
+			// 出欠情報を格納
+			attendDto = new AttendanceInfoDto();
+			attendDto.setAttendanceAm(props.getProperty("Attend3.AttendanceAM"));
+			attendDto.setReasonAm(props.getProperty("Attend3.ReasonAm"));
+			attendDto.setAttendancePm(props.getProperty("Attend3.AttendancePM"));
+			attendDto.setReasonPm(props.getProperty("Attend3.ReasonPm"));			
+			// 出欠情報をformに格納
+			edit = new EditForm();
+			edit.setAttendanceInfo(attendDto);
+			edit.setEmployeeInfo(dto);		
+			list.add(edit);			
 			
 			form.setAttendanceInfoList(list);
 

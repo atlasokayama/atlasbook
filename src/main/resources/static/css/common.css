@@ -1,3 +1,11 @@
+html {
+	color: #333333;
+}
+
+a {
+	color: #333333;
+}
+
 .contents{
 	position:relative;
 	margin: 0 auto;

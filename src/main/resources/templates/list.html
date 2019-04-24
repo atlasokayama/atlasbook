@@ -23,22 +23,32 @@
 	   		</tr>
 			<!--/* データ行部 Start */-->
 			<tr th:each="row,rowStat : *{form.attendanceInfoList}" th:object="${row}" class="list_tr">
-	    			<td class="td_name">
-	    			<form method="post" name="nameForm" th:action="@{list}">
-					    <input type="hidden" name="edit" th:value="*{employeeInfo.name}" >
-					    <a th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="*{employeeInfo.name}"></a>
-				  	</form>
-	    			</td>
-	    			<td th:text="*{attendanceInfo.attendanceAm}" class="td_am"></td>
-	    			<td th:text="*{attendanceInfo.reasonAm}" class="td_riyu"></td>
-	    			<td th:text="*{attendanceInfo.attendancePm}" class="td_pm"></td>
-	    			<td th:text="*{attendanceInfo.reasonPm}" class="td_riyu"></td>
+    			<td class="td_name">
+    			<form method="post" name="nameForm" th:action="@{list}">
+				    <input type="hidden" name="edit" th:value="*{employeeInfo.name}" >
+				    <a class="a_name" th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="*{employeeInfo.name}"></a>
+			  	</form>
+    			</td>
+    			<td class="td_am">
+					<div th:switch="*{attendanceInfo.attendanceAm}">
+					    <img th:case="0" th:src="@{/images/batsu.png}" width="30" height="30" >
+					    <img th:case="1" th:src="@{/images/maru.png}" width="30" height="30" >
+					</div>
+    			</td>
+    			<td th:text="*{attendanceInfo.reasonAm}" class="td_riyu"></td>
+    			<td class="td_pm">
+					<div th:switch="*{attendanceInfo.attendancePm}">
+					    <img th:case="0" th:src="@{/images/batsu.png}" width="30" height="30" >
+					    <img th:case="1" th:src="@{/images/maru.png}" width="30" height="30" >
+					</div>	    			
+    			</td>
+    			<td th:text="*{attendanceInfo.reasonPm}" class="td_riyu"></td>
 	    	</tr>
 	   		<tr class="list_tr sum_tr">
-	   			<td class="td_name">5人</td>
-	   			<td class="td_am">4人</td>
+	   			<td class="td_name">3人</td>
+	   			<td class="td_am">3人</td>
 	   			<td class="td_riyu"></td>
-	   			<td class="td_pm">3人</td>
+	   			<td class="td_pm">2人</td>
 	   			<td class="td_riyu"></td>
 	   		</tr>
 			</table>
