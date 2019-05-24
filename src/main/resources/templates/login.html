@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 	<head>
-		<title>ログイン画面</title>
+		<!--/* 共通のスクリプト／スタイルシートを読み込む */-->
+		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
 	</head>
 	<body>
 		<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null" 
