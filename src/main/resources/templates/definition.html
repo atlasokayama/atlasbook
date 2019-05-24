@@ -29,6 +29,14 @@
 <script type="text/javascript" th:src="@{/js/common/plugin/jquery.autosize.js}"></script>
 <script type="text/javascript" th:src="@{/js/common/plugin/fixed_midashi.js}"></script>
 
+<!--/* ブラウザバックの禁止 */-->
+<script type="text/javascript">
+    history.pushState(null, null, null);
+    window.addEventListener("popstate", function() {
+        history.pushState(null, null, null);
+    });
+</script>
+
 </th:block>
 </head>
 <body>
