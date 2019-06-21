@@ -5,7 +5,7 @@
 		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
  		<link href="/css/list.css" th:href="@{/css/list.css}" rel="stylesheet">
  	</head>
-	<body>
+	<body th:object="${form}">
 		<div class="contents">
 			<div class="wrap">
 				<h1 class = "midasi"> 月例出欠</h1>
@@ -21,7 +21,7 @@
 			   			<th class="th_riyu">欠席理由</th>
 			   		</tr>
 					<!--/* データ行部 Start */-->
-					<tr th:each="row,rowStat : *{form.attendanceInfoList}" th:object="${row}" class="list_tr">
+					<tr th:each="row,rowStat : *{attendanceInfoList}" th:object="${row}" class="list_tr">
 						<td class="td_name">
 							<form method="post" name="nameForm" th:action="@{list}">
 								<input type="hidden" name="edit" th:value="*{employeeInfo.name}" >

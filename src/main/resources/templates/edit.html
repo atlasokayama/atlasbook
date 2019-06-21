@@ -5,7 +5,7 @@
 		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
  		<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet">
 	</head>
-	<body>
+	<body th:object="${form}">
 		<div class="contents">
 			<div class="wrap">
 				<h1 class="midasi">月例出欠 ＞ 出欠入力</h1>
@@ -16,13 +16,13 @@
 							<th class="am" >ＡＭ</th>
 							<td class="edit_td"><label><input type="radio" name="ams" class="radiobtn">出席</label><br>
 							<label><input type="radio" name="amk" class="radiobtn">欠席</label>
-							<input type="text" name="riyuu1" class="riyuu" value="理由"></td>
+							<input type="text" th:field="*{attendanceInfo.reasonAm}" class="riyuu"></td>
 						</tr>
 						<tr class="edit_tr">
 							<th class="pm" >ＰＭ</th>
 							<td class="edit_td"><label><input type="radio" name="pms" class="radiobtn">出席</label><br>
 							<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
-							<input type="text" name="riyuu2" class="riyuu" value="理由"></td>
+							<input type="text" th:field="*{attendanceInfo.reasonPm}" class="riyuu"></td>
 						</tr>
 					</table>
 					<input type="submit" name="edit" value="登録">

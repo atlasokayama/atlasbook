@@ -4,7 +4,7 @@
 		<!--/* 共通のスクリプト／スタイルシートを読み込む */-->
 		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
 	</head>
-	<body>
+	<body th:object="${form}">
 		<div class="contents">
 			<div class="wrap">
 				<h1 class="midasi">月例出欠 ＞ マスタ管理 ＞ 出席者追加</h1>

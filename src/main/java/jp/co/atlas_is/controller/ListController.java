@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import jp.co.atlas_is.dto.AttendanceInfoDto;
 import jp.co.atlas_is.dto.EmployeeInfoDto;
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
@@ -59,9 +60,9 @@ public class ListController {
 		} catch (IOException e) {
 		}
 		
-			// 遷移先情報を設定
-			ModelAndView mav = new ModelAndView("master", "form", form);
-			return mav;
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("master", "form", form);
+		return mav;
 	}	
 
 	/**
@@ -70,8 +71,15 @@ public class ListController {
 	 */
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
 	ModelAndView edit() {
+		// 出欠入力画面に表示する情報
+		EditForm form = new EditForm();
+		EmployeeInfoDto employeeInfo = new EmployeeInfoDto();
+		AttendanceInfoDto attendanceInfo = new AttendanceInfoDto();
+		form.setEmployeeInfo(employeeInfo);
+		form.setAttendanceInfo(attendanceInfo);
+		
 		// 遷移先情報を設定
-		ModelAndView mav = new ModelAndView("edit");
+		ModelAndView mav = new ModelAndView("edit", "form", form);
 		return mav;
 	}	
 
