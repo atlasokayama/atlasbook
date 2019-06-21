@@ -23,7 +23,6 @@ public class AttendanceInfoForm {
 	private String attendancePm;
 
 	/** PM欠席理由 */
-	@Size(min = 0, max = 10)
+	@Size(min = 0, max = 10, message = "PM欠席理由は１０文字以内で入力してください")
 	private String reasonPm;
-
 }
