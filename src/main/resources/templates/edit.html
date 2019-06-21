@@ -10,19 +10,30 @@
 			<div class="wrap">
 				<h1 class="midasi">月例出欠 ＞ 出欠入力</h1>
 				<form name="editForm" method="post" th:action="@{edit}">
+					<!--/* エラーメッセージ Start */-->
+					<table th:if="${not #lists.isEmpty(errors)}">
+						<tr th:each="error : ${errors}">
+							<td>
+								<span th:text="${error}"></span>
+							</td>
+						</tr>
+					</table>
+					<!--/* エラーメッセージ End */-->
 					<p class="namae">新田</p>
 					<table class="edit_table">
 						<tr class="edit_tr">
 							<th class="am" >ＡＭ</th>
 							<td class="edit_td"><label><input type="radio" name="ams" class="radiobtn">出席</label><br>
-							<label><input type="radio" name="amk" class="radiobtn">欠席</label>
-							<input type="text" th:field="*{attendanceInfo.reasonAm}" class="riyuu"></td>
+								<label><input type="radio" name="amk" class="radiobtn">欠席</label>
+								<input type="text" th:field="*{attendanceInfo.reasonAm}" class="riyuu">
+							</td>
 						</tr>
 						<tr class="edit_tr">
 							<th class="pm" >ＰＭ</th>
 							<td class="edit_td"><label><input type="radio" name="pms" class="radiobtn">出席</label><br>
-							<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
-							<input type="text" th:field="*{attendanceInfo.reasonPm}" class="riyuu"></td>
+								<label><input type="radio" name="pmk" class="radiobtn">欠席</label>
+								<input type="text" th:field="*{attendanceInfo.reasonPm}" class="riyuu">
+							</td>
 						</tr>
 					</table>
 					<input type="submit" name="edit" value="登録">

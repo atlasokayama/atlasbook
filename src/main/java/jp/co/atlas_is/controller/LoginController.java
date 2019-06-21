@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import jp.co.atlas_is.dto.AttendanceInfoDto;
-import jp.co.atlas_is.dto.EmployeeInfoDto;
+import jp.co.atlas_is.form.AttendanceInfoForm;
 import jp.co.atlas_is.form.EditForm;
+import jp.co.atlas_is.form.EmployeeInfoForm;
 import jp.co.atlas_is.form.ListForm;
 
 @Controller
@@ -59,9 +59,9 @@ public class LoginController {
 		ListForm form = new ListForm();
 		
 		// 職員情報を作成
-		EmployeeInfoDto dto = new EmployeeInfoDto();
+		EmployeeInfoForm employeeInfo = new EmployeeInfoForm();
 		// 出欠情報を作成
-		AttendanceInfoDto attendDto = new AttendanceInfoDto();
+		AttendanceInfoForm attendInfo = new AttendanceInfoForm();
 		// 出欠一覧フォーム
 		List<EditForm> list = new ArrayList<EditForm>();
 		EditForm edit = new EditForm();
@@ -72,48 +72,48 @@ public class LoginController {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 			
 			// 職員情報を格納
-			dto.setEmployeeNo(props.getProperty("Employee1.No"));
-			dto.setName(props.getProperty("Employee1.Name"));
+			employeeInfo.setEmployeeNo(props.getProperty("Employee1.No"));
+			employeeInfo.setName(props.getProperty("Employee1.Name"));
 			// 出欠情報を格納
-			attendDto.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
-			attendDto.setReasonAm(props.getProperty("Attend1.ReasonAm"));
-			attendDto.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
-			attendDto.setReasonPm(props.getProperty("Attend1.ReasonPm"));						
+			attendInfo.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
+			attendInfo.setReasonAm(props.getProperty("Attend1.ReasonAm"));
+			attendInfo.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
+			attendInfo.setReasonPm(props.getProperty("Attend1.ReasonPm"));						
 			// 出欠情報をformに格納
-			edit.setEmployeeInfo(dto);
-			edit.setAttendanceInfo(attendDto);
+			edit.setEmployeeInfo(employeeInfo);
+			edit.setAttendanceInfo(attendInfo);
 			list.add(edit);
 	
 			// 2件目
-			dto = new EmployeeInfoDto();
-			dto.setEmployeeNo(props.getProperty("Employee2.No"));
-			dto.setName(props.getProperty("Employee2.Name"));
+			employeeInfo = new EmployeeInfoForm();
+			employeeInfo.setEmployeeNo(props.getProperty("Employee2.No"));
+			employeeInfo.setName(props.getProperty("Employee2.Name"));
 			// 出欠情報を格納
-			attendDto = new AttendanceInfoDto();
-			attendDto.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
-			attendDto.setReasonAm(props.getProperty("Attend2.ReasonAm"));
-			attendDto.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
-			attendDto.setReasonPm(props.getProperty("Attend2.ReasonPm"));			
+			attendInfo = new AttendanceInfoForm();
+			attendInfo.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
+			attendInfo.setReasonAm(props.getProperty("Attend2.ReasonAm"));
+			attendInfo.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
+			attendInfo.setReasonPm(props.getProperty("Attend2.ReasonPm"));			
 			// 出欠情報をformに格納
 			edit = new EditForm();
-			edit.setAttendanceInfo(attendDto);
-			edit.setEmployeeInfo(dto);		
+			edit.setAttendanceInfo(attendInfo);
+			edit.setEmployeeInfo(employeeInfo);		
 			list.add(edit);
 
 			// 3件目
-			dto = new EmployeeInfoDto();
-			dto.setEmployeeNo(props.getProperty("Employee3.No"));
-			dto.setName(props.getProperty("Employee3.Name"));
+			employeeInfo = new EmployeeInfoForm();
+			employeeInfo.setEmployeeNo(props.getProperty("Employee3.No"));
+			employeeInfo.setName(props.getProperty("Employee3.Name"));
 			// 出欠情報を格納
-			attendDto = new AttendanceInfoDto();
-			attendDto.setAttendanceAm(props.getProperty("Attend3.AttendanceAM"));
-			attendDto.setReasonAm(props.getProperty("Attend3.ReasonAm"));
-			attendDto.setAttendancePm(props.getProperty("Attend3.AttendancePM"));
-			attendDto.setReasonPm(props.getProperty("Attend3.ReasonPm"));			
+			attendInfo = new AttendanceInfoForm();
+			attendInfo.setAttendanceAm(props.getProperty("Attend3.AttendanceAM"));
+			attendInfo.setReasonAm(props.getProperty("Attend3.ReasonAm"));
+			attendInfo.setAttendancePm(props.getProperty("Attend3.AttendancePM"));
+			attendInfo.setReasonPm(props.getProperty("Attend3.ReasonPm"));			
 			// 出欠情報をformに格納
 			edit = new EditForm();
-			edit.setAttendanceInfo(attendDto);
-			edit.setEmployeeInfo(dto);		
+			edit.setAttendanceInfo(attendInfo);
+			edit.setEmployeeInfo(employeeInfo);		
 			list.add(edit);			
 			
 			form.setAttendanceInfoList(list);
