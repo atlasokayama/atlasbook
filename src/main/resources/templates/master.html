@@ -6,9 +6,20 @@
  		<link href="/css/master.css" th:href="@{/css/master.css}" rel="stylesheet">
 	</head>
 	<body th:object="${form}">
+	    <header class="header">
+			<form name="modoruForm" method="post" th:action="@{edit}">
+				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
+			</form>
+			<h1 class = "midasi">月例出欠</h1>			
+		</header>
+		<div class="pankuzu">
+			<ul class="pankuzu-list">
+				<li>TOP</li>
+				<li>マスタ管理</li>				
+			</ul>
+		</div>
 		<div class="contents">
 			<div class="wrap">
-				<h1 class="midasi">月例出欠 ＞ マスタ管理</h1>
 				<form method="post" th:action="@{master}">
 					<p class="emp-cnt">6人</p>	
 					<input type="submit" name="addEmp" value="＋" class="addEmp-button">

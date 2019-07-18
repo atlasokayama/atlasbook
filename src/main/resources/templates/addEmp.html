@@ -5,9 +5,21 @@
 		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
 	</head>
 	<body th:object="${form}">
+	    <header class="header">
+			<form name="modoruForm" method="post" th:action="@{edit}">
+				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
+			</form>
+		<h1 class="midasi">月例出欠</h1>
+	</header>
+		<div class="pankuzu">
+			<ul class="pankuzu-list">
+				<li>TOP</li>
+				<li>マスタ管理</li>	
+				<li>出席者追加</li>				
+			</ul>
+		</div>
 		<div class="contents">
 			<div class="wrap">
-				<h1 class="midasi">月例出欠 ＞ マスタ管理 ＞ 出席者追加</h1>
 				<form action="master" method="post" th:action="addEmp">
 					<p>名前</p>
 					<input type ="text" name="addNamae">

@@ -6,9 +6,20 @@
  		<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet">
 	</head>
 	<body th:object="${form}">
+	    <header class="header">
+			<form name="modoruForm" method="post" th:action="@{edit}">
+				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
+			</form>
+			<h1 class = "midasi">月例出欠</h1>			
+		</header>
+		<div class="pankuzu">
+			<ul class="pankuzu-list">
+				<li>TOP</li>
+				<li>出欠入力</li>				
+			</ul>
+		</div>
 		<div class="contents">
 			<div class="wrap">
-				<h1 class="midasi">月例出欠 ＞ 出欠入力</h1>
 				<form name="editForm" method="post" th:action="@{edit}">
 					<!--/* エラーメッセージ Start */-->
 					<table th:if="${not #lists.isEmpty(errors)}">

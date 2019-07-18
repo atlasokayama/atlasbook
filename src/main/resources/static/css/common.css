@@ -18,9 +18,51 @@ a {
 
 .midasi{
 	font-size: 1.5em;
-	margin: 10px 0;
+	text-align: center;
+	margin: 8px;
 }
 
 .chkbox, .radiobtn {
 	margin: 0 5px 0 10px;
+}
+
+.header {
+	position:relative;
+	border: solid #EEE;
+	border-width:0px 0px 3px 0px;
+	width: 100%;
+	padding: 8px 0;
+}
+
+.modoru{
+	position:absolute;
+	width:20px;
+	height:20px;
+	left:20px;
+	top:20px;
+}
+
+.pankuzu {
+	padding: 8px 0;
+	margin-bottom: 40px;
+}
+
+.pankuzu-list {
+	list-style: none;
+	margin-bottom: 0px;
+	padding-inline-start: 10px;
+	font-size: 0.8em;
+	color: #DDD;
+	display: flex;
+}
+
+.pankuzu-list li:after{
+	content: '>';
+	padding: 0 8px;
+	color: #DDD;
+	vertical-align:1px;
+}
+
+.pankuzu-list li:last-child:after{
+	content: '';
 }

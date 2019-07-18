@@ -6,12 +6,16 @@
  		<link href="/css/list.css" th:href="@{/css/list.css}" rel="stylesheet">
  	</head>
 	<body th:object="${form}">
+	    <header class="header">
+			<h1 class = "midasi">月例出欠</h1>
+			<form name="masterForm" method="post" th:action="@{list}">
+				<input type="image" src="/images/haguruma.png" th:src="@{/images/haguruma.png}" alt="マスタ管理画面へ" name="master" class="haguruma" />
+			</form>
+		</header>
+		<div class="pankuzu">
+		</div>
 		<div class="contents">
 			<div class="wrap">
-				<h1 class = "midasi"> 月例出欠</h1>
-				<form name="masterForm" method="post" th:action="@{list}">
-					<input type="image" src="/images/haguruma.png" th:src="@{/images/haguruma.png}" alt="マスタ管理画面へ" name="master" class="haguruma" />
-				</form>
 				<table class="list_table">
 					<tr class="list_tr">
 			   			<th class="th_name"></th>
