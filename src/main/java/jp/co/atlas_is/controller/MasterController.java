@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import jp.co.atlas_is.form.ListForm;
+
 @Controller
 @RequestMapping("master")
 public class MasterController {		
@@ -18,4 +20,13 @@ public class MasterController {
 		ModelAndView mav = new ModelAndView("addEmp");
 		return mav;
 	}	
+	
+	@RequestMapping(params = "modoru", method = RequestMethod.POST)
+	ModelAndView modoru() {
+		
+		ListForm form = new ListForm();
+		
+		ModelAndView mav = new ModelAndView("list", "form", form);
+		return mav;
+	}
 }
