@@ -7,7 +7,7 @@
 	</head>
 	<body th:object="${form}">
 	    <header class="header">
-			<form name="modoruForm" method="post" th:action="@{edit}">
+			<form name="modoruForm" method="post" th:action="@{sample}">
 				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
 			</form>
 			<h1 class = "midasi">月例出欠</h1>			
@@ -20,7 +20,16 @@
 		</div>
 		<div class="contents">
 			<div class="wrap">
-				<form name="editForm" method="post" th:action="@{edit}">
+				<form name="editForm" method="post" th:action="@{sample}">
+					<!--/* エラーメッセージ Start */-->
+					<table th:if="${not #lists.isEmpty(errors)}">
+						<tr th:each="error : ${errors}">
+							<td>
+								<span th:text="${error.defaultMessage}" style="color: red"></span>
+							</td>
+						</tr>
+					</table>
+					<!--/* エラーメッセージ End */-->
 					<p class="namae">新田</p>
 					<table class="edit_table">
 						<tr class="edit_tr">
