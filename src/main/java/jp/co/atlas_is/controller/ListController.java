@@ -42,7 +42,7 @@ public class ListController {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 			
 			// 職員情報を格納
-			employeeInfo.setEmployeeNo(props.getProperty("Employee1.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
 			employeeInfo.setName(props.getProperty("Employee1.Name"));
 			// 職員情報をformに格納
 			edit.setEmployeeInfo(employeeInfo);
@@ -50,7 +50,7 @@ public class ListController {
 
 			// 2件目
 			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmployeeNo(props.getProperty("Employee2.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
 			employeeInfo.setName(props.getProperty("Employee2.Name"));
 			edit = new EditForm();
 			edit.setEmployeeInfo(employeeInfo);		

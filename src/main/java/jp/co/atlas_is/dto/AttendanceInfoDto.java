@@ -8,19 +8,25 @@ import lombok.Data;
 @Data
 public class AttendanceInfoDto {
 
-	/** 職員番号 */
-	private String employeeNo;
+	/** 社員NO */
+	private int emp_no;
+	
+	/** 年 */
+	private int year;
+	
+	/** 月 */
+	private int month;
 
 	/** AM出欠 */
-	private String attendanceAm;
+	private boolean am_attend;
 
-	/** AM欠席理由 */
-	private String reasonAm;
+	/** AM理由 */
+	private String am_reason;
 
 	/** PM出欠 */
-	private String attendancePm;
+	private boolean pm_attend;
 
-	/** PM欠席理由 */
-	private String reasonPm;
+	/** PM理由 */
+	private String pm_reason;
 
 }

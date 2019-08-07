@@ -26,26 +26,21 @@
 			   		</tr>
 					<!--/* データ行部 Start */-->
 					<tr th:each="row,rowStat : *{attendanceInfoList}" th:object="${row}" class="list_tr">
-						<td class="td_name">
-							<form method="post" name="nameForm" th:action="@{list}">
-								<input type="hidden" name="edit" th:value="*{employeeInfo.name}" >
-								<a class="a_name" th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="*{employeeInfo.name}"></a>
-						  	</form>
-						</td>
+						
 						<td class="td_am">
-							<div th:switch="*{attendanceInfo.attendanceAm}">
-								<img th:case="0" th:src="@{/images/batsu.png}" width="30" height="30" >
-								<img th:case="1" th:src="@{/images/maru.png}" width="30" height="30" >
+							<div th:switch="*{attendanceInfo.am_attend}">
+								<img th:case="false" th:src="@{/images/batsu.png}" width="30" height="30" >
+								<img th:case="true" th:src="@{/images/maru.png}" width="30" height="30" >
 							</div>
 						</td>
-						<td th:text="*{attendanceInfo.reasonAm}" class="td_riyu"></td>
+						<td th:text="*{attendanceInfo.am_reason}" class="td_riyu"></td>
 						<td class="td_pm">
-							<div th:switch="*{attendanceInfo.attendancePm}">
-								<img th:case="0" th:src="@{/images/batsu.png}" width="30" height="30" >
-								<img th:case="1" th:src="@{/images/maru.png}" width="30" height="30" >
+							<div th:switch="*{attendanceInfo.pm_attend}">
+								<img th:case="false" th:src="@{/images/batsu.png}" width="30" height="30" >
+								<img th:case="true" th:src="@{/images/maru.png}" width="30" height="30" >
 							</div>					
 						</td>
-						<td th:text="*{attendanceInfo.reasonPm}" class="td_riyu"></td>
+						<td th:text="*{attendanceInfo.pm_reason}" class="td_riyu"></td>
 					</tr>
 			   		<tr class="list_tr sum_tr">
 			   			<td class="td_name">3人</td>
@@ -58,7 +53,12 @@
 				<form name="clearForm" method="post" th:action="@{list}">
 					<input type="button" name="clear" class="clear-button" value="クリア"/>
 				</form>
-			</div>
+			<td class="td_name">
+							<form method="post" name="nameForm" th:action="@{list}">
+								<input type="hidden" name="edit" th:value="*{employeeInfo.name}">
+								<a class="a_name" th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="*{employeeInfo.name}"></a>
+						  	</form>
+						</td></div>
 			<!-- wrap -->
 		</div>
 	</body>

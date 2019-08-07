@@ -26,18 +26,20 @@ import jp.co.atlas_is.form.ListForm;
 
 @Controller
 public class LoginController {
-	
+
 	/**
 	 * ルート画面遷移処理
+	 * 
 	 * @return ビュー
 	 */
 	@GetMapping("/")
 	public String rootForm(Model model) {
 		return "login";
 	}
-	
+
 	/**
 	 * ログイン画面遷移処理
+	 * 
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -47,17 +49,18 @@ public class LoginController {
 
 	/**
 	 * トップ画面遷移処理
+	 * 
 	 * @return ビュー
 	 */
 	@GetMapping("/top")
 	public ModelAndView topForm(Principal principal, Model model) {
-		Authentication authentication = (Authentication)principal;
+		Authentication authentication = (Authentication) principal;
 		String username = authentication.getName();
-		
+
 		// トップ画面アクセス時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
-		
+
 		// 職員情報を作成
 		EmployeeInfoForm employeeInfo = new EmployeeInfoForm();
 		// 出欠情報を作成
@@ -70,57 +73,57 @@ public class LoginController {
 		Resource resource = new ClassPathResource("/top.properties");
 		try {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
-			
+
 			// 職員情報を格納
-			employeeInfo.setEmployeeNo(props.getProperty("Employee1.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
 			employeeInfo.setName(props.getProperty("Employee1.Name"));
 			// 出欠情報を格納
-			attendInfo.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend1.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend1.ReasonPm"));						
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend1.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend1.ReasonPm"));
 			// 出欠情報をformに格納
 			edit.setEmployeeInfo(employeeInfo);
 			edit.setAttendanceInfo(attendInfo);
 			list.add(edit);
-	
+
 			// 2件目
 			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmployeeNo(props.getProperty("Employee2.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
 			employeeInfo.setName(props.getProperty("Employee2.Name"));
 			// 出欠情報を格納
 			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend2.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend2.ReasonPm"));			
+			attendInfo.setAm_attend(false);
+			attendInfo.setAm_reason(props.getProperty("Attend2.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend2.ReasonPm"));
 			// 出欠情報をformに格納
 			edit = new EditForm();
 			edit.setAttendanceInfo(attendInfo);
-			edit.setEmployeeInfo(employeeInfo);		
+			edit.setEmployeeInfo(employeeInfo);
 			list.add(edit);
 
 			// 3件目
 			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmployeeNo(props.getProperty("Employee3.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee3.No")));
 			employeeInfo.setName(props.getProperty("Employee3.Name"));
 			// 出欠情報を格納
 			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAttendanceAm(props.getProperty("Attend3.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend3.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend3.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend3.ReasonPm"));			
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend3.ReasonAm"));
+			attendInfo.setPm_attend(true);
+			attendInfo.setPm_reason(props.getProperty("Attend3.ReasonPm"));
 			// 出欠情報をformに格納
 			edit = new EditForm();
 			edit.setAttendanceInfo(attendInfo);
-			edit.setEmployeeInfo(employeeInfo);		
-			list.add(edit);			
-			
+			edit.setEmployeeInfo(employeeInfo);
+			list.add(edit);
+
 			form.setAttendanceInfoList(list);
 
 		} catch (IOException e) {
-		}		
-		
+		}
+
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		mav.addObject("username", username);
