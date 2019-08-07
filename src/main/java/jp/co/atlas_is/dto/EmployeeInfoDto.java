@@ -9,12 +9,9 @@ import lombok.Data;
 public class EmployeeInfoDto {
 
 	/** 職員番号 */
-	private String employeeNo;
+	private int emp_no;
 
-	/** 氏名カナ */
-	private String kanaName;
-
-	/** 氏名 */
+	/** 名前 */
 	private String name;
 
 }

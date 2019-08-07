@@ -3,16 +3,13 @@ package jp.co.atlas_is.form;
 import lombok.Data;
 
 /**
- * 社員DTO
+ * 社員情報
  */
 @Data
 public class EmployeeInfoForm {
 
-	/** 職員番号 */
-	private String employeeNo;
-
-	/** 氏名カナ */
-	private String kanaName;
+	/** 社員NO */
+	private int emp_no;
 
 	/** 氏名 */
 	private String name;

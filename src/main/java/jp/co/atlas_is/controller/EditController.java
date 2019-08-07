@@ -57,13 +57,13 @@ public class EditController {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 			
 			// 職員情報を格納
-			employeeInfo.setEmployeeNo(props.getProperty("Employee1.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
 			employeeInfo.setName(props.getProperty("Employee1.Name"));
 			// 出欠情報を格納
-			attendInfo.setAttendanceAm(props.getProperty("Attend1.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend1.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend1.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend1.ReasonPm"));						
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend1.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend1.ReasonPm"));
 			// 出欠情報をformに格納
 			edit.setEmployeeInfo(employeeInfo);
 			edit.setAttendanceInfo(attendInfo);
@@ -71,14 +71,14 @@ public class EditController {
 	
 			// 2件目
 			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmployeeNo(props.getProperty("Employee2.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
 			employeeInfo.setName(props.getProperty("Employee2.Name"));
 			// 出欠情報を格納
 			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAttendanceAm(props.getProperty("Attend2.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend2.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend2.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend2.ReasonPm"));			
+			attendInfo.setAm_attend(false);
+			attendInfo.setAm_reason(props.getProperty("Attend2.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend2.ReasonPm"));			
 			// 出欠情報をformに格納
 			edit = new EditForm();
 			edit.setAttendanceInfo(attendInfo);
@@ -87,14 +87,14 @@ public class EditController {
 
 			// 3件目
 			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmployeeNo(props.getProperty("Employee3.No"));
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee3.No")));
 			employeeInfo.setName(props.getProperty("Employee3.Name"));
 			// 出欠情報を格納
 			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAttendanceAm(props.getProperty("Attend3.AttendanceAM"));
-			attendInfo.setReasonAm(props.getProperty("Attend3.ReasonAm"));
-			attendInfo.setAttendancePm(props.getProperty("Attend3.AttendancePM"));
-			attendInfo.setReasonPm(props.getProperty("Attend3.ReasonPm"));			
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend3.ReasonAm"));
+			attendInfo.setPm_attend(true);
+			attendInfo.setPm_reason(props.getProperty("Attend3.ReasonPm"));			
 			// 出欠情報をformに格納
 			edit = new EditForm();
 			edit.setAttendanceInfo(attendInfo);
