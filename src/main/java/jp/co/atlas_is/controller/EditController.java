@@ -31,7 +31,17 @@ public class EditController {
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
-	ModelAndView master(@Validated @ModelAttribute EditForm input) {
+	ModelAndView master(@Validated @ModelAttribute EditForm input, Errors errors) {
+		// エラーチェック
+		if (errors.hasErrors()) {
+			// エラーがある場合は自画面へ
+			// formを作成
+			//EditForm form = new EditForm();
+			// 遷移先情報を設定
+			ModelAndView mav = new ModelAndView("edit", "form", input);
+			mav.addObject("errors", errors.getAllErrors());
+			return mav;
+		}
 		// 登録成功時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();

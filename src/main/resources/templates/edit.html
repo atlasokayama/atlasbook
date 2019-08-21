@@ -21,6 +21,15 @@
 		<div class="contents">
 			<div class="wrap">
 				<form name="editForm" method="post" th:action="@{edit}">
+					<!--/* エラーメッセージ Start */-->
+					<table th:if="${not #lists.isEmpty(errors)}">
+						<tr th:each="error : ${errors}">
+							<td>
+								<span th:text="${error.defaultMessage}" style="color: red"></span>
+							</td>
+						</tr>
+					</table>
+					<!--/* エラーメッセージ End */-->
 					<p class="namae">新田</p>
 					<table class="edit_table">
 						<tr class="edit_tr">
