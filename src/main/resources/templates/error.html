@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<!--/* 共通のスクリプト／スタイルシートを読み込む */-->
+		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
+	</head>
+	<body>
+		<div 
+			 th:text="エラーが発生しました。再度ログインして実行してください。">
+		</div>
+	</body>
+</html>
