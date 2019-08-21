@@ -16,6 +16,17 @@
 		</div>
 		<div class="contents">
 			<div class="wrap">
+				<div class="year-month">
+					<div class="year-month_flex">
+					<form name="yearMonthBack" method="post" th:action="@{list}" class="year-month_form">
+						<input type="image" src="/images/back.png" th:src="@{/images/back.png}" alt="前の月へ" name="year-month_back" class="year-month_ctl year-month_back" />
+					</form>
+					<p class="year-month_disp">2019年9月</p>
+					<form name="yearMonthNext" method="post" th:action="@{list}" class="year-month_form">
+						<input type="image" src="/images/next.png" th:src="@{/images/next.png}" alt="次の月へ" name="year-month_next" class="year-month_ctl year-month_next" />
+					</form>
+					</div>
+				</div>
 				<table class="list_table">
 					<tr class="list_tr">
 			   			<th class="th_name"></th>
