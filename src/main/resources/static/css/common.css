@@ -14,10 +14,39 @@ a {
 
 .wrap{
 	margin: 0 10px;
+	text-align: center;
+}
+
+.year-month{
+	display:inline-block;
+	margin: 40px auto;
+}
+
+.year-month_flex{
+	display: flex;
+}
+
+.year-month_form{
+	display: block;
+	height: 16px;
+}
+
+.year-month_disp{
+	display: block;
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin: 0 24px;
+	text-align: center;
+	line-height: 16px;
+}
+
+.year-month_ctl{
+	width:16px;
+	height:16px;
 }
 
 .midasi{
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	text-align: center;
 	margin: 8px;
 }
@@ -52,15 +81,19 @@ a {
 	margin-bottom: 0px;
 	padding-inline-start: 10px;
 	font-size: 0.8em;
-	color: #DDD;
+	color: #BBB;
 	display: flex;
 }
 
 .pankuzu-list li:after{
 	content: '>';
 	padding: 0 8px;
-	color: #DDD;
 	vertical-align:1px;
+}
+
+.pankuzu-list li:last-child{
+	color: #777;
+	font-weight: 700;
 }
 
 .pankuzu-list li:last-child:after{
