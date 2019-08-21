@@ -19,8 +19,17 @@
 			</ul>
 		</div>
 		<div class="contents">
+			<!--/* エラーメッセージ Start */-->
+			<table th:if="${not #lists.isEmpty(errors)}">
+				<tr th:each="error : ${errors}">
+					<td>
+						<span th:text="${error.defaultMessage}" style="color: red"></span>
+					</td>
+				</tr>
+			</table>
+			<!--/* エラーメッセージ End */-->
 			<div class="wrap">
-				<form action="master" method="post" th:action="@{addEmp}">
+				<form method="post" th:action="@{addEmp}">
 					<p>名前</p>
 					<input type ="text" name="addNamae">
 					<input type="submit" name="add" value="追加">
