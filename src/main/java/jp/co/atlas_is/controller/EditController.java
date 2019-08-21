@@ -116,9 +116,73 @@ public class EditController {
 
 	@RequestMapping(params = "modoru", method = RequestMethod.POST)
 	ModelAndView modoru(@Validated @ModelAttribute EditForm input, Errors errors) {
-		// 登録成功時は一覧画面へ遷移
+		// 戻る時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
+
+		// 職員情報を作成
+		EmployeeInfoForm employeeInfo = new EmployeeInfoForm();
+		// 出欠情報を作成
+		AttendanceInfoForm attendInfo = new AttendanceInfoForm();
+		// 出欠一覧フォーム
+		List<EditForm> list = new ArrayList<EditForm>();
+		EditForm edit = new EditForm();
+
+		// 設定ファイルの読み込み
+		Resource resource = new ClassPathResource("/top.properties");
+		try {
+			Properties props = PropertiesLoaderUtils.loadProperties(resource);
+
+			// 職員情報を格納
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
+			employeeInfo.setName(props.getProperty("Employee1.Name"));
+			// 出欠情報を格納
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend1.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend1.ReasonPm"));
+			// 出欠情報をformに格納
+			edit.setEmployeeInfo(employeeInfo);
+			edit.setAttendanceInfo(attendInfo);
+			list.add(edit);
+
+			// 2件目
+			employeeInfo = new EmployeeInfoForm();
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
+			employeeInfo.setName(props.getProperty("Employee2.Name"));
+			// 出欠情報を格納
+			attendInfo = new AttendanceInfoForm();
+			attendInfo.setAm_attend(false);
+			attendInfo.setAm_reason(props.getProperty("Attend2.ReasonAm"));
+			attendInfo.setPm_attend(false);
+			attendInfo.setPm_reason(props.getProperty("Attend2.ReasonPm"));
+			// 出欠情報をformに格納
+			edit = new EditForm();
+			edit.setAttendanceInfo(attendInfo);
+			edit.setEmployeeInfo(employeeInfo);
+			list.add(edit);
+
+			// 3件目
+			employeeInfo = new EmployeeInfoForm();
+			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee3.No")));
+			employeeInfo.setName(props.getProperty("Employee3.Name"));
+			// 出欠情報を格納
+			attendInfo = new AttendanceInfoForm();
+			attendInfo.setAm_attend(true);
+			attendInfo.setAm_reason(props.getProperty("Attend3.ReasonAm"));
+			attendInfo.setPm_attend(true);
+			attendInfo.setPm_reason(props.getProperty("Attend3.ReasonPm"));
+			// 出欠情報をformに格納
+			edit = new EditForm();
+			edit.setAttendanceInfo(attendInfo);
+			edit.setEmployeeInfo(employeeInfo);
+			list.add(edit);
+
+			form.setAttendanceInfoList(list);
+
+		} catch (IOException e) {
+		}
+		
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
