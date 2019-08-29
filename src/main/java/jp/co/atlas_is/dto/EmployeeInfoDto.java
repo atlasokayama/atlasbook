@@ -12,6 +12,6 @@ public class EmployeeInfoDto {
 	private int emp_no;
 
 	/** 名前 */
-	private String name;
+	private String emp_name;
 
 }

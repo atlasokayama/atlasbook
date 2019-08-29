@@ -10,10 +10,10 @@ public class AttendanceInfoDto {
 
 	/** 社員NO */
 	private int emp_no;
-	
+
 	/** 年 */
 	private int year;
-	
+
 	/** 月 */
 	private int month;
 

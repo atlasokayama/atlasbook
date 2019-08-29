@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import jp.co.atlas_is.form.AttendanceInfoForm;
 import jp.co.atlas_is.form.EditForm;
-import jp.co.atlas_is.form.EmployeeInfoForm;
 import jp.co.atlas_is.form.ListForm;
 
 @Controller
@@ -61,10 +59,6 @@ public class LoginController {
 		// formを作成
 		ListForm form = new ListForm();
 
-		// 職員情報を作成
-		EmployeeInfoForm employeeInfo = new EmployeeInfoForm();
-		// 出欠情報を作成
-		AttendanceInfoForm attendInfo = new AttendanceInfoForm();
 		// 出欠一覧フォーム
 		List<EditForm> list = new ArrayList<EditForm>();
 		EditForm edit = new EditForm();
@@ -75,48 +69,33 @@ public class LoginController {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 
 			// 職員情報を格納
-			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
-			employeeInfo.setName(props.getProperty("Employee1.Name"));
-			// 出欠情報を格納
-			attendInfo.setAm_attend(true);
-			attendInfo.setAm_reason(props.getProperty("Attend1.ReasonAm"));
-			attendInfo.setPm_attend(false);
-			attendInfo.setPm_reason(props.getProperty("Attend1.ReasonPm"));
-			// 出欠情報をformに格納
-			edit.setEmployeeInfo(employeeInfo);
-			edit.setAttendanceInfo(attendInfo);
+			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
+			edit.setEmp_name(props.getProperty("Employee1.Name"));
+			// 出欠情報を格納S
+			edit.setAm_attend(true);
+			edit.setAm_reason(props.getProperty("Attend1.ReasonAm"));
+			edit.setPm_attend(false);
+			edit.setPm_reason(props.getProperty("Attend1.ReasonPm"));
 			list.add(edit);
 
 			// 2件目
-			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
-			employeeInfo.setName(props.getProperty("Employee2.Name"));
-			// 出欠情報を格納
-			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAm_attend(false);
-			attendInfo.setAm_reason(props.getProperty("Attend2.ReasonAm"));
-			attendInfo.setPm_attend(false);
-			attendInfo.setPm_reason(props.getProperty("Attend2.ReasonPm"));
-			// 出欠情報をformに格納
 			edit = new EditForm();
-			edit.setAttendanceInfo(attendInfo);
-			edit.setEmployeeInfo(employeeInfo);
+			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee2.No")));
+			edit.setEmp_name(props.getProperty("Employee2.Name"));
+			edit.setAm_attend(false);
+			edit.setAm_reason(props.getProperty("Attend2.ReasonAm"));
+			edit.setPm_attend(false);
+			edit.setPm_reason(props.getProperty("Attend2.ReasonPm"));
 			list.add(edit);
 
 			// 3件目
-			employeeInfo = new EmployeeInfoForm();
-			employeeInfo.setEmp_no(Integer.parseInt(props.getProperty("Employee3.No")));
-			employeeInfo.setName(props.getProperty("Employee3.Name"));
-			// 出欠情報を格納
-			attendInfo = new AttendanceInfoForm();
-			attendInfo.setAm_attend(true);
-			attendInfo.setAm_reason(props.getProperty("Attend3.ReasonAm"));
-			attendInfo.setPm_attend(true);
-			attendInfo.setPm_reason(props.getProperty("Attend3.ReasonPm"));
-			// 出欠情報をformに格納
 			edit = new EditForm();
-			edit.setAttendanceInfo(attendInfo);
-			edit.setEmployeeInfo(employeeInfo);
+			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee3.No")));
+			edit.setEmp_name(props.getProperty("Employee3.Name"));
+			edit.setAm_attend(true);
+			edit.setAm_reason(props.getProperty("Attend3.ReasonAm"));
+			edit.setPm_attend(true);
+			edit.setPm_reason(props.getProperty("Attend3.ReasonPm"));
 			list.add(edit);
 
 			form.setAttendanceInfoList(list);

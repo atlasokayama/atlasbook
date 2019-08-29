@@ -9,9 +9,10 @@ import jp.co.atlas_is.form.ListForm;
 
 @Controller
 @RequestMapping("master")
-public class MasterController {		
+public class MasterController {
 	/**
 	 * 出席者追加画面遷移処理
+	 * 
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(params = "addEmp", method = RequestMethod.POST)
@@ -19,13 +20,13 @@ public class MasterController {
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("addEmp");
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(params = "modoru", method = RequestMethod.POST)
 	ModelAndView modoru() {
-		
+
 		ListForm form = new ListForm();
-		
+
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
 	}

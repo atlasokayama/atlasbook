@@ -14,8 +14,8 @@ import jp.co.atlas_is.form.ListForm;
 @Controller
 @RequestMapping("addEmp")
 public class AddEmpController {
-	
-	@RequestMapping(params = "add",method = RequestMethod.POST)
+
+	@RequestMapping(params = "add", method = RequestMethod.POST)
 	ModelAndView entry(@Validated @ModelAttribute AddEmpForm input, Errors errors) {
 		// エラーチェック
 		if (errors.hasErrors()) {
