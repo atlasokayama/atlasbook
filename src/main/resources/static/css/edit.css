@@ -1,7 +1,10 @@
-.name{
+.btn{
 	text-align: left;
 }
 
+.edit_name{
+	text-align: left;
+}
 
 .edit_table{
 	border-collapse: collapse;
