@@ -15,12 +15,15 @@
 			<meta name="format-detection" content="telephone=no, email=no, address=no"/>
 			<!--/* リファラ情報からパラメータを除外する */-->
 			<meta name="referrer" content="origin" />
+			<!--/* CSRFトークン */-->
+			<meta name="_csrf" th:content="${_csrf.token}" />
+			<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 			
 			<title>月例出欠確認システム</title>
 			
 			<!--/* （共通） CSS定義 */-->
-			<link rel="stylesheet" type="text/css" th:href="@{/css/reboot.css?timestamp={timestamp}(timestamp=${timedisp? #dates.format(#dates.createNow(), 'yyyyMMddHHmmss'): ''})}"></link>
 			<link rel="stylesheet" type="text/css" th:href="@{/css/common.css?timestamp={timestamp}(timestamp=${timedisp? #dates.format(#dates.createNow(), 'yyyyMMddHHmmss'): ''})}"></link>
+			<link rel="stylesheet" type="text/css" th:href="@{/css/reboot.css?timestamp={timestamp}(timestamp=${timedisp? #dates.format(#dates.createNow(), 'yyyyMMddHHmmss'): ''})}"></link>
 			
 			<!--/* （共通） JavaScript定義 */-->
 			<script type="text/javascript" th:src="@{/js/common/plugin/jquery-3.4.1.min.js}"></script>
