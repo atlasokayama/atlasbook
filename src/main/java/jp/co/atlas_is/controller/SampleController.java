@@ -1,11 +1,8 @@
 package jp.co.atlas_is.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -14,14 +11,35 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
-import jp.co.atlas_is.util.DbUtil;
+import jp.co.atlas_is.service.SampleService;
+import jp.co.atlas_is.util.JsonUtil;
 
 @Controller
 public class SampleController {
+
+	/**
+	 * ajax通信処理
+	 * 
+	 * @param empNo
+	 * @return 検索結果
+	 */
+	@RequestMapping(value = "/ajax", method = RequestMethod.GET)
+	@ResponseBody
+	public String getJsonData(@PathParam("empNo") int empNo) {
+		String ret = "";
+		try {
+			SampleService service = new SampleService();
+			ret = JsonUtil.stringify(service.getSampleRow(empNo));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
 
 	/**
 	 * サンプル画面遷移処理
@@ -54,39 +72,12 @@ public class SampleController {
 			return mav;
 		}
 		// 登録成功時は一覧画面へ遷移
+		SampleService service = new SampleService();
+
 		// formを作成
 		ListForm form = new ListForm();
-		List<EditForm> list = new ArrayList<EditForm>();
-
-		try {
-			// DBコネクションを取得
-			Connection con = DbUtil.getConnection();
-
-			String sql = "select * from attendance a left join employee b on a.emp_no = b.emp_no;";
-			PreparedStatement stmt = con.prepareStatement(sql);
-
-			// SQLを実行
-			ResultSet rs = stmt.executeQuery();
-
-			// 結果を取得
-			while (rs.next()) {
-				// 項目名指定で結果を取得してFormに格納
-				EditForm edit = new EditForm();
-				edit.setEmp_no(rs.getInt("emp_no"));
-				edit.setAm_attend(rs.getBoolean("am_attend"));
-				edit.setAm_reason(rs.getString("am_reason"));
-				edit.setPm_attend(rs.getBoolean("pm_attend"));
-				edit.setPm_reason(rs.getString("pm_reason"));
-				edit.setEmp_name(rs.getString("emp_name"));
-				list.add(edit);
-			}
-			// 取得結果を格納
-			form.setAttendanceInfoList(list);
-		} catch (Exception e) {
-			// エラー画面へ遷移
-			ModelAndView mav = new ModelAndView("error");
-			return mav;
-		}
+		// 一覧情報を検索
+		form.setAttendanceInfoList(service.getSampleList());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);

@@ -1,10 +1,12 @@
 .emp-cnt{
-  margin: 10px;	
+  margin: 10px;
+  text-align: left;
 }
 
 .ul-emp{
   list-style: none;
   padding-inline-start: 0px;
+  text-align: left;
 }
 
 .addEmp-button{
