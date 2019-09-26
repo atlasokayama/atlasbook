@@ -15,6 +15,9 @@
 			<meta name="format-detection" content="telephone=no, email=no, address=no"/>
 			<!--/* リファラ情報からパラメータを除外する */-->
 			<meta name="referrer" content="origin" />
+			<!--/* CSRFトークン */-->
+			<meta name="_csrf" th:content="${_csrf.token}" />
+			<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 			
 			<title>月例出欠確認システム</title>
 			

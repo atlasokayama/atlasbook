@@ -1,57 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<!--/* 共通のスクリプト／スタイルシートを読み込む */-->
-		<th:block th:replace="definition::app-fragment-definition-include"></th:block>
- 		<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet">
-	</head>
-	<body th:object="${form}">
-	    <header class="header">
-			<form name="modoruForm" method="post" th:action="@{sample}">
-				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/* 共通のスクリプト／スタイルシートを読み込む */-->
+<th:block th:replace="definition::app-fragment-definition-include"></th:block>
+<link href="/css/edit.css" th:href="@{/css/edit.css}" rel="stylesheet">
+</head>
+<body th:object="${form}">
+	<header class="header">
+		<form name="modoruForm" method="post" th:action="@{sample}">
+			<input type="image" src="/images/modoru.png"
+				th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru"
+				class="modoru" />
+		</form>
+		<h1 class="midasi">月例出欠</h1>
+	</header>
+	<div class="pankuzu">
+		<ul class="pankuzu-list">
+			<li>TOP</li>
+			<li>出欠入力</li>
+		</ul>
+	</div>
+	<div class="contents">
+		<div class="wrap">
+			<form name="editForm" method="post" th:action="@{sample}">
+				<!--/* エラーメッセージ Start */-->
+				<table th:if="${not #lists.isEmpty(errors)}">
+					<tr th:each="error : ${errors}">
+						<td><span th:text="${error.defaultMessage}"
+							style="color: red"></span></td>
+					</tr>
+				</table>
+				<!--/* エラーメッセージ End */-->
+				<p class="namae">新田</p>
+				<table class="edit_table">
+					<tr class="edit_tr">
+						<th class="am">ＡＭ</th>
+						<td class="edit_td"><label><input type="radio"
+								th:field="*{am_attend}" class="radiobtn" value="true">出席</label><br>
+							<label><input type="radio" th:field="*{am_attend}"
+								class="radiobtn" value="false">欠席</label> <input type="text"
+							th:field="*{am_reason}" class="riyuu"></td>
+					</tr>
+					<tr class="edit_tr">
+						<th class="pm">ＰＭ</th>
+						<td class="edit_td"><label><input type="radio"
+								th:field="*{pm_attend}" class="radiobtn" value="true">出席</label><br>
+							<label><input type="radio" th:field="*{pm_attend}"
+								class="radiobtn" value="false">欠席</label> <input type="text"
+							th:field="*{pm_reason}" class="riyuu"></td>
+					</tr>
+				</table>
+				<input type="submit" name="edit" value="登録">
+				<button type="button" id="sample">サンプル</button>
 			</form>
-			<h1 class = "midasi">月例出欠</h1>			
-		</header>
-		<div class="pankuzu">
-			<ul class="pankuzu-list">
-				<li>TOP</li>
-				<li>出欠入力</li>				
-			</ul>
 		</div>
-		<div class="contents">
-			<div class="wrap">
-				<form name="editForm" method="post" th:action="@{sample}">
-					<!--/* エラーメッセージ Start */-->
-					<table th:if="${not #lists.isEmpty(errors)}">
-						<tr th:each="error : ${errors}">
-							<td>
-								<span th:text="${error.defaultMessage}" style="color: red"></span>
-							</td>
-						</tr>
-					</table>
-					<!--/* エラーメッセージ End */-->
-					<p class="namae">新田</p>
-					<table class="edit_table">
-						<tr class="edit_tr">
-							<th class="am" >ＡＭ</th>
-							<td class="edit_td"><label><input type="radio" th:field="*{am_attend}" class="radiobtn" value="true">出席</label><br>
-								<label><input type="radio" th:field="*{am_attend}" class="radiobtn" value="false">欠席</label>
-								<input type="text" th:field="*{am_reason}" class="riyuu">
-							</td>
-						</tr>
-						<tr class="edit_tr">
-							<th class="pm" >ＰＭ</th>
-							<td class="edit_td"><label><input type="radio" th:field="*{pm_attend}" class="radiobtn" value="true">出席</label><br>
-								<label><input type="radio" th:field="*{pm_attend}" class="radiobtn" value="false">欠席</label>
-								<input type="text" th:field="*{pm_reason}" class="riyuu">
-							</td>
-						</tr>
-					</table>
-					<input type="submit" name="edit" value="登録">
-				</form>
-			</div>
 		<!-- wrap -->
-		</div>
-		<!-- contents -->
-	</body>
+	</div>
+	<!-- contents -->
+</body>
+<script type="text/javascript">
+		document.getElementById("sample").onclick = function() {
+			$.ajax({
+				type : "GET",
+				url : "/ajax?empNo=1",
+				dataType : "json",
+				success : function(data,status,xhr) {
+					data.forEach(row => {
+						console.log(row.emp_name);
+						console.log(row.emp_no);
+					});
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("error:" + XMLHttpRequest + "/" + textStatus + "/" + errorThrown);
+				}
+			});
+		};
+    </script>
 </html>
