@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.service.LoginService;
+import jp.co.atlas_is.service.SampleService;
 
 @Controller
 public class LoginController {
@@ -60,11 +62,11 @@ public class LoginController {
 		ListForm form = new ListForm();
 
 		// 出欠一覧フォーム
-		List<EditForm> list = new ArrayList<EditForm>();
-		EditForm edit = new EditForm();
+//		List<EditForm> list = new ArrayList<EditForm>();
+//		EditForm edit = new EditForm();
 
 		// 設定ファイルの読み込み
-		Resource resource = new ClassPathResource("/top.properties");
+/*		Resource resource = new ClassPathResource("/top.properties");
 		try {
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 
@@ -102,7 +104,10 @@ public class LoginController {
 
 		} catch (IOException e) {
 		}
-
+*/
+		// 一覧情報を検索
+		form.setAttendanceInfoList(LoginService.getLoginList());
+		
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		mav.addObject("username", username);
