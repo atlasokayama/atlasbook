@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.service.ListService;
 
 @Controller
 @RequestMapping("list")
@@ -30,21 +31,27 @@ public class ListController {
 		// formを作成
 		ListForm form = new ListForm();
 		List<EditForm> list = new ArrayList<EditForm>();
-		EditForm edit = new EditForm();
+//		EditForm edit = new EditForm();
 
 		// プロパティ読み込み
-		Resource resource = new ClassPathResource("/top.properties");
-		try {
-			Properties props = PropertiesLoaderUtils.loadProperties(resource);
-
-			// 職員情報を格納
-			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
-			edit.setEmp_name(props.getProperty("Employee1.Name"));
-			list.add(edit);
-
-			form.setAttendanceInfoList(list);
-		} catch (IOException e) {
-		}
+//		Resource resource = new ClassPathResource("/top.properties");
+//		try {
+//			Properties props = PropertiesLoaderUtils.loadProperties(resource);
+//
+//			// 職員情報を格納
+//			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
+//			edit.setEmp_name(props.getProperty("Employee1.Name"));
+//			list.add(edit);
+//
+//			form.setAttendanceInfoList(list);
+//		} catch (IOException e) {
+//		}
+		
+		ListService service = new ListService();
+		
+		list = service.getEmployeeList();
+		  
+		form.setAttendanceInfoList(list);
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("master", "form", form);
