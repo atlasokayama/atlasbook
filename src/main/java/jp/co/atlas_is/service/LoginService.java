@@ -19,9 +19,7 @@ public class LoginService {
 	public static List<EditForm> getLoginList() {
 		List<EditForm> list = new ArrayList<EditForm>();
 
-		try {
-			// DBコネクションを取得
-			Connection con = DbUtil.getConnection();
+		try (Connection con = DbUtil.getConnection()) {
 
 			String sql = "select * from attendance a left join employee b on a.emp_no = b.emp_no;";
 			PreparedStatement stmt = con.prepareStatement(sql);

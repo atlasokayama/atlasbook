@@ -12,9 +12,9 @@ import jp.co.atlas_is.util.DbUtil;
 public class ListService {
 	public List<EditForm> getEmployeeList() {
 		List<EditForm> list = new ArrayList<EditForm>();
-		
+
 		// DBコネクションを取得
-		try(Connection con = DbUtil.getConnection()) {
+		try (Connection con = DbUtil.getConnection()) {
 			String sql = "select * from employee order by emp_no asc;";
 			PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -31,7 +31,7 @@ public class ListService {
 			}
 		} catch (Exception e) {
 		}
-		
+
 		return list;
 	}
 

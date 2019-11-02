@@ -19,10 +19,7 @@ public class SampleService {
 	public List<EditForm> getSampleList() {
 		List<EditForm> list = new ArrayList<EditForm>();
 
-		try {
-			// DBコネクションを取得
-			Connection con = DbUtil.getConnection();
-
+		try (Connection con = DbUtil.getConnection()) {
 			String sql = "select * from attendance a left join employee b on a.emp_no = b.emp_no;";
 			PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -45,7 +42,7 @@ public class SampleService {
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 出欠入力情報取得処理
 	 * 
@@ -55,9 +52,7 @@ public class SampleService {
 	public List<EditForm> getSampleRow(int empNo) {
 		List<EditForm> list = new ArrayList<EditForm>();
 
-		try {
-			// DBコネクションを取得
-			Connection con = DbUtil.getConnection();
+		try (Connection con = DbUtil.getConnection()) {
 
 			String sql = "select * from attendance a left join employee b on a.emp_no = b.emp_no where a.emp_no = ?;";
 			PreparedStatement stmt = con.prepareStatement(sql);
