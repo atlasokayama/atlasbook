@@ -1,5 +1,7 @@
 package jp.co.atlas_is.dto;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 /**
@@ -12,10 +14,7 @@ public class AttendanceInfoDto {
 	private int emp_no;
 
 	/** 年 */
-	private int year;
-
-	/** 月 */
-	private int month;
+	private Date attend_yearmonth;
 
 	/** AM出欠 */
 	private boolean am_attend;
