@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.AddEmpForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.service.AddEmpService;
 
 @Controller
 @RequestMapping("addEmp")
@@ -25,6 +26,14 @@ public class AddEmpController {
 			mav.addObject("errors", errors.getAllErrors());
 			return mav;
 		}
+
+		AddEmpService service = new AddEmpService();
+		
+		service.addEmployee();
+		
+		
+		
+		
 		// 登録成功時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
