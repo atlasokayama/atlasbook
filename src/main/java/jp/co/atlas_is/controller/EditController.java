@@ -1,13 +1,5 @@
 package jp.co.atlas_is.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
 import jp.co.atlas_is.service.EditService;
+import jp.co.atlas_is.service.LoginService;
 
 @Controller
 @RequestMapping("edit")
@@ -42,32 +35,11 @@ public class EditController {
 			return mav;
 		}
 		// 登録成功時は一覧画面へ遷移
-		// formを作成
 		ListForm form = new ListForm();
 
 		// 出欠一覧フォーム
-		List<EditForm> list = new ArrayList<EditForm>();
-		EditForm edit = new EditForm();
-
-		// 設定ファイルの読み込み
-		Resource resource = new ClassPathResource("/top.properties");
-		try {
-			Properties props = PropertiesLoaderUtils.loadProperties(resource);
-
-			// 職員情報を格納
-			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
-			edit.setEmp_name(props.getProperty("Employee1.Name"));
-			// 出欠情報を格納
-			edit.setAm_attend(true);
-			edit.setAm_reason(props.getProperty("Attend1.ReasonAm"));
-			edit.setPm_attend(false);
-			edit.setPm_reason(props.getProperty("Attend1.ReasonPm"));
-			list.add(edit);
-
-			form.setAttendanceInfoList(list);
-
-		} catch (IOException e) {
-		}
+		// 一覧情報を検索
+		form.setAttendanceInfoList(LoginService.getLoginList());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
@@ -76,33 +48,12 @@ public class EditController {
 
 	@RequestMapping(params = "modoru", method = RequestMethod.POST)
 	ModelAndView modoru(@Validated @ModelAttribute EditForm input, Errors errors) {
-		// 戻る時は一覧画面へ遷移
-		// formを作成
+		// 登録成功時は一覧画面へ遷移
 		ListForm form = new ListForm();
 
 		// 出欠一覧フォーム
-		List<EditForm> list = new ArrayList<EditForm>();
-		EditForm edit = new EditForm();
-
-		// 設定ファイルの読み込み
-		Resource resource = new ClassPathResource("/top.properties");
-		try {
-			Properties props = PropertiesLoaderUtils.loadProperties(resource);
-
-			// 職員情報を格納
-			edit.setEmp_no(Integer.parseInt(props.getProperty("Employee1.No")));
-			edit.setEmp_name(props.getProperty("Employee1.Name"));
-			// 出欠情報を格納
-			edit.setAm_attend(true);
-			edit.setAm_reason(props.getProperty("Attend1.ReasonAm"));
-			edit.setPm_attend(false);
-			edit.setPm_reason(props.getProperty("Attend1.ReasonPm"));
-			list.add(edit);
-
-			form.setAttendanceInfoList(list);
-
-		} catch (IOException e) {
-		}
+		// 一覧情報を検索
+		form.setAttendanceInfoList(LoginService.getLoginList());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
@@ -112,17 +63,17 @@ public class EditController {
 	@RequestMapping(params = "attendanceEdit", method = RequestMethod.POST)
 	ModelAndView edit(@Validated @ModelAttribute EditForm input, Errors errors) {
 		// TODO：バリデーションの判定とエラーメッセージの返却
-		
+
 		// 戻る時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
 
 		EditService service = new EditService();
-		
+
 		service.attendanceEdit(input);
 
 		// TODO：更新後の再検索処理
-		
+
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
