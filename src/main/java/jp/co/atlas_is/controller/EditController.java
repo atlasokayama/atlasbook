@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.service.EditService;
 
 @Controller
 @RequestMapping("edit")
@@ -108,4 +109,22 @@ public class EditController {
 		return mav;
 	}
 
+	@RequestMapping(params = "attendanceEdit", method = RequestMethod.POST)
+	ModelAndView edit(@Validated @ModelAttribute EditForm input, Errors errors) {
+		// TODO：バリデーションの判定とエラーメッセージの返却
+		
+		// 戻る時は一覧画面へ遷移
+		// formを作成
+		ListForm form = new ListForm();
+
+		EditService service = new EditService();
+		
+		service.attendanceEdit(input);
+
+		// TODO：更新後の再検索処理
+		
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("list", "form", form);
+		return mav;
+	}
 }
