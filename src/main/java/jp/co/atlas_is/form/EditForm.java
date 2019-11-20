@@ -31,4 +31,6 @@ public class EditForm {
 	/** PM欠席理由 */
 	@Size(min = 0, max = 20, message = "PM欠席理由は２０文字以内で入力してください")
 	private String pm_reason;
+	
+	private boolean chk;
 }

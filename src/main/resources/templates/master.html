@@ -25,7 +25,7 @@
 					<input type="submit" name="addEmp" value="＋" class="addEmp-button">
 					<ul class="ul-emp">
 						<li th:each="row : *{attendanceInfoList}" th:object="${row}" class="li-emp">
-							<input type="checkbox" name="ams" th:text="*{emp_name}" class="chkbox">
+							<input type="checkbox" name="chk" th:text="*{emp_name}" class="chkbox">
 						</li>
 					</ul>
 					<p class="btn"><input type="submit" name="delEmp" value="削除"></p>
