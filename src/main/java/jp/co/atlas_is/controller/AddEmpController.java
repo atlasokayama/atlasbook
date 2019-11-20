@@ -18,8 +18,13 @@ public class AddEmpController {
 
 	@RequestMapping(params = "add", method = RequestMethod.POST)
 	ModelAndView entry(@Validated @ModelAttribute AddEmpForm input, Errors errors) {
+
+    		
+		String name = 	input.getAddNamae();
+		
 		// エラーチェック
-		if (errors.hasErrors()) {
+//  	if (errors.hasErrors()) {
+		if (name.isEmpty()) {
 			// エラーがある場合は自画面へ
 			// 遷移先情報を設定
 			ModelAndView mav = new ModelAndView("addEmp", "form", input);
@@ -29,7 +34,7 @@ public class AddEmpController {
 
 		AddEmpService service = new AddEmpService();
 		
-		service.addEmployee();
+		service.addEmployee(name);
 		
 		
 		

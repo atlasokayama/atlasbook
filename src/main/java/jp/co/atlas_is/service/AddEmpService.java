@@ -12,13 +12,16 @@ import jp.co.atlas_is.util.DbUtil;
 import java.sql.Connection;
 
 public class AddEmpService {
-	public List<EditForm> addEmployee() {
+	public List<EditForm> addEmployee(String name) {
 		List<EditForm> list = new ArrayList<EditForm>();
 
 		// DBコネクションを取得
 		try (Connection con = DbUtil.getConnection()) {
-			String sql = "insert into employee (emp_no, emp_name) select MAX(emp_no)+1, '大女優X' from employee;";
+			String sql = "insert into employee (emp_no, emp_name) select MAX(emp_no)+1, ? from employee;";
+            
 			PreparedStatement stmt = con.prepareStatement(sql);
+
+			stmt.setString(1, name);
 
 			// SQLを実行
 			stmt.executeUpdate();
