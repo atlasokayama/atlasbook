@@ -40,6 +40,7 @@ public class LoginService {
 				list.add(edit);
 			}
 		} catch (Exception e) {
+			System.out.print(e.getMessage());
 		}
 		return list;
 	}

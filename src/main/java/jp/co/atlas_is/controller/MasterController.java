@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
-import jp.co.atlas_is.service.Delemp;
 import jp.co.atlas_is.service.ListService;
+import jp.co.atlas_is.service.MasterService;
 
 @Controller
 @RequestMapping("master")
@@ -40,7 +40,7 @@ public class MasterController {
 	@RequestMapping(params = "delEmp", method = RequestMethod.POST)
 	ModelAndView dellist() {
 		// 遷移先情報を設定
-		Delemp.delEmp();
+		MasterService.delEmp();
 
 		// formを作成
 		ListForm form = new ListForm();

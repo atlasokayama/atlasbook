@@ -39,6 +39,7 @@ public class SampleService {
 				list.add(edit);
 			}
 		} catch (Exception e) {
+			System.out.print(e.getMessage());
 		}
 		return list;
 	}
@@ -74,6 +75,7 @@ public class SampleService {
 				list.add(edit);
 			}
 		} catch (Exception e) {
+			System.out.print(e.getMessage());
 		}
 		return list;
 	}

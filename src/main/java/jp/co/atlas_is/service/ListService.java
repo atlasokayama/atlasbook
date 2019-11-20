@@ -30,6 +30,7 @@ public class ListService {
 				list.add(edit);
 			}
 		} catch (Exception e) {
+			System.out.print(e.getMessage());
 		}
 
 		return list;

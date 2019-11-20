@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.AddEmpForm;
 import jp.co.atlas_is.form.ListForm;
-import jp.co.atlas_is.service.AddEmpService;
+import jp.co.atlas_is.service.MasterService;
 
 @Controller
 @RequestMapping("addEmp")
@@ -32,7 +32,7 @@ public class AddEmpController {
 			return mav;
 		}
 
-		AddEmpService service = new AddEmpService();
+		MasterService service = new MasterService();
 		
 		service.addEmployee(name);
 		
