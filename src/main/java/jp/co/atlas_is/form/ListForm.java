@@ -10,7 +10,13 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ListForm {
+public class ListForm extends BaseForm {
 	/** 出欠情報 */
 	private List<EditForm> attendanceInfoList;
+
+	private int totalEmployees;
+
+	private int totalAmAttendanceCount;
+
+	private int totalPmAttendanceCount;
 }

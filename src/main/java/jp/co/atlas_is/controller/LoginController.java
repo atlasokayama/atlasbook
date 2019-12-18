@@ -1,6 +1,7 @@
 package jp.co.atlas_is.controller;
 
 import java.security.Principal;
+import java.time.YearMonth;
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
@@ -52,9 +53,11 @@ public class LoginController {
 		// formを作成
 		ListForm form = new ListForm();
 
+		form.setTargetMonth(YearMonth.now());
+
 		// 出欠一覧フォーム
 		// 一覧情報を検索
-		form.setAttendanceInfoList(LoginService.getLoginList());
+		form.setAttendanceInfoList(LoginService.getLoginList(form.getTargetMonth()));
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
