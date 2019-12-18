@@ -12,17 +12,6 @@ import jp.co.atlas_is.util.DbUtil;
 
 public class LoginService {
 
-
-	// TODO：引数付きのメソッドに置き換えられたら消す
-	/**
-	 * 一覧情報取得処理
-	 * 
-	 * @return List<EditForm>
-	 */
-	public static List<EditForm> getLoginList() {
-		return getLoginList(YearMonth.now());
-	}
-
 	/**
 	 * 一覧情報取得処理
 	 * 
