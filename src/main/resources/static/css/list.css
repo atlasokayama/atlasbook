@@ -7,6 +7,7 @@
 }
 
 .list_table{
+	width: 300px;
 	border-collapse: collapse;
 	table-layout: fixed;
 }
@@ -23,12 +24,12 @@
 
 .th_name,.td_name{
 	text-align: left;
-	width: 70px;
+	width: 150px;
 }
 
 .th_riyu,.td_riyu{
 	text-align: left;
-	width: 165px;
+	width: 200px;
 }
 
 .th_am,.th_pm,.td_am,.td_pm{

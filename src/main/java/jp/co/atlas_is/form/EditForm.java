@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class EditForm {
+public class EditForm extends BaseForm {
 
 	/** 社員NO */
 	private int emp_no;
@@ -31,6 +31,9 @@ public class EditForm {
 	/** PM欠席理由 */
 	@Size(min = 0, max = 20, message = "PM欠席理由は２０文字以内で入力してください")
 	private String pm_reason;
+
+	/** 出欠未登録 */
+	private boolean attendance;
 	
 	private boolean chk;
 }

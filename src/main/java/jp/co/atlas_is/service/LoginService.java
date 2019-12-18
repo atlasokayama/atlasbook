@@ -3,6 +3,7 @@ package jp.co.atlas_is.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,18 +12,33 @@ import jp.co.atlas_is.util.DbUtil;
 
 public class LoginService {
 
+
+	// TODO：引数付きのメソッドに置き換えられたら消す
 	/**
 	 * 一覧情報取得処理
 	 * 
 	 * @return List<EditForm>
 	 */
 	public static List<EditForm> getLoginList() {
+		return getLoginList(YearMonth.now());
+	}
+
+	/**
+	 * 一覧情報取得処理
+	 * 
+	 * @return List<EditForm>
+	 */
+	public static List<EditForm> getLoginList(YearMonth target) {
 		List<EditForm> list = new ArrayList<EditForm>();
 
 		try (Connection con = DbUtil.getConnection()) {
 
-			String sql = "select * from attendance a left join employee b on a.emp_no = b.emp_no;";
+			String sql = "select E.emp_no, E.emp_name, A.am_attend, A.am_reason, A.pm_attend, A.pm_reason, COALESCE(A.emp_no, -1) AS \"attendance\" from employee E LEFT JOIN attendance A ON E.emp_no = A.emp_no AND A.attend_yearmonth = CAST(? as date);";
+
 			PreparedStatement stmt = con.prepareStatement(sql);
+
+			String hoge = String.format("%s-01", target.toString());
+			stmt.setString(1, hoge);
 
 			// SQLを実行
 			ResultSet rs = stmt.executeQuery();
@@ -37,6 +53,7 @@ public class LoginService {
 				edit.setPm_attend(rs.getBoolean("pm_attend"));
 				edit.setPm_reason(rs.getString("pm_reason"));
 				edit.setEmp_name(rs.getString("emp_name"));
+				edit.setAttendance(rs.getInt("attendance") == -1 ? false : true);
 				list.add(edit);
 			}
 		} catch (Exception e) {
