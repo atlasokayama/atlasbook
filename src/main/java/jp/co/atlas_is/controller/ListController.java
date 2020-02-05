@@ -1,9 +1,11 @@
 package jp.co.atlas_is.controller;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,9 +46,13 @@ public class ListController {
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
-	ModelAndView edit() {
+	ModelAndView edit(@ModelAttribute("edit") String targetName) {
 		// 出欠入力画面に表示する情報
-		EditForm form = new EditForm();
+		ListService service = new ListService();
+		YearMonth targetMonth = YearMonth.now();
+		targetMonth = targetMonth.withYear(2019);
+		targetMonth = targetMonth.withMonth(9);
+		EditForm form = service.getAttendanceInfo(targetMonth, targetName);
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("edit", "form", form);

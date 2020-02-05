@@ -21,7 +21,7 @@
 		<div class="contents">
 			<div class="wrap">
 				<form name="editForm" method="post" th:action="@{edit}">
-					<p class="edit_namae">新田</p>
+					<p class="edit_namae" th:text="*{emp_name}"></p>
 					<table class="edit_table">
 						<tr class="edit_tr">
 							<th class="am" >ＡＭ</th>
