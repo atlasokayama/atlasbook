@@ -8,7 +8,7 @@ import lombok.Data;
  * 出欠情報DTO
  */
 @Data
-public class SampleForm {
+public class SampleForm  extends BaseForm{
 
 	/** 職員番号 */
 	private String employeeNo;

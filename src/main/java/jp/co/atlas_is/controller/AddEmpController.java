@@ -47,7 +47,7 @@ public class AddEmpController {
 	}
 
 	@RequestMapping(params = "modoru", method = RequestMethod.POST)
-	ModelAndView modoru(@Validated @ModelAttribute EditForm input, Errors errors) {
+	ModelAndView modoru(@ModelAttribute EditForm input) {
 		// 登録成功時は一覧画面へ遷移
 		ListForm form = new ListForm();
 

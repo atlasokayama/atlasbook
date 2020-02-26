@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.form.MasterForm;
 import jp.co.atlas_is.service.ListService;
 
 @Controller
@@ -24,7 +25,7 @@ public class ListController {
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(params = "master", method = RequestMethod.POST)
-	ModelAndView master() {
+	ModelAndView master(@ModelAttribute MasterForm input) {
 		// formを作成
 		ListForm form = new ListForm();
 		List<EditForm> list = new ArrayList<EditForm>();
@@ -34,6 +35,7 @@ public class ListController {
 		list = service.getEmployeeList();
 
 		form.setAttendanceInfoList(list);
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("master", "form", form);
@@ -46,13 +48,16 @@ public class ListController {
 	 * @return モデル／ビュー
 	 */
 	@RequestMapping(params = "edit", method = RequestMethod.POST)
-	ModelAndView edit(@ModelAttribute("edit") String targetName) {
-		// 出欠入力画面に表示する情報
-		ListService service = new ListService();
+	ModelAndView edit(@ModelAttribute("edit") String targetValue) {
+		// 引数を","で分割して取得対象名、取得対象年月に分解
+		String[] values = targetValue.split(",", -1);
 		YearMonth targetMonth = YearMonth.now();
-		targetMonth = targetMonth.withYear(2019);
-		targetMonth = targetMonth.withMonth(9);
-		EditForm form = service.getAttendanceInfo(targetMonth, targetName);
+		targetMonth = targetMonth.withYear(Integer.valueOf(values[1].substring(0, 4)));
+		targetMonth = targetMonth.withMonth(Integer.valueOf(values[1].substring(5, 7)));
+		
+		// 出欠入力画面に表示する情報を取得
+		ListService service = new ListService();
+		EditForm form = service.getAttendanceInfo(targetMonth, values[0]);
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("edit", "form", form);

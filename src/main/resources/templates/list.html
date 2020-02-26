@@ -9,6 +9,7 @@
 	    <header class="header">
 			<h1 class = "midasi">月例出欠</h1>
 			<form name="masterForm" method="post" th:action="@{list}">
+				<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
 				<input type="image" src="/images/haguruma.png" th:src="@{/images/haguruma.png}" alt="マスタ管理画面へ" name="master" class="haguruma" />
 			</form>
 		</header>
@@ -36,38 +37,38 @@
 			   			<th class="th_riyu">欠席理由</th>
 			   		</tr>
 					<!--/* データ行部 Start */-->
-					<tr th:each="row,rowStat : *{attendanceInfoList}" th:object="${row}" class="list_tr">
+					<tr th:each="row,rowStat : *{attendanceInfoList}"  class="list_tr">
 						<td class="td_name">
 							<form method="post" name="nameForm" th:action="@{list}">
-								<input type="hidden" name="edit" th:value="*{emp_name}" >
-								<a class="a_name" th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="*{emp_name}"></a>
+								<input type="hidden" name="edit" th:value="${row.emp_name} + ',' + *{dispYearMonth}" >
+								<a class="a_name" th:href="'javascript:nameForm[' + ${rowStat.index} + '].submit()'" th:text="${row.emp_name}" ></a>
 						  	</form>
 						</td>
 						<!-- attendance == true -->
-						<td class="td_am" th:if="*{attendance}">
-							<div th:switch="*{am_attend}">
+						<td class="td_am" th:if="${row.attendance}">
+							<div th:switch="${row.am_attend}">
 								<img th:case="false" th:src="@{/images/batsu.png}" width="30" height="30" >
 								<img th:case="true" th:src="@{/images/maru.png}" width="30" height="30" >
 							</div>
 						</td>
-						<td th:text="*{am_reason}" class="td_riyu" th:if="*{attendance}"></td>
-						<td class="td_pm" th:if="*{attendance}">
-							<div th:switch="*{pm_attend}">
+						<td th:text="${row.am_reason}" class="td_riyu" th:if="${row.attendance}"></td>
+						<td class="td_pm" th:if="${row.attendance}">
+							<div th:switch="${row.pm_attend}">
 								<img th:case="false" th:src="@{/images/batsu.png}" width="30" height="30" >
 								<img th:case="true" th:src="@{/images/maru.png}" width="30" height="30" >
 							</div>					
 						</td>
-						<td th:text="*{pm_reason}" class="td_riyu" th:if="*{attendance}"></td>
+						<td th:text="${row.pm_reason}" class="td_riyu" th:if="${row.attendance}"></td>
 						<!-- attendance == false -->
-						<td class="td_riyu" colspan="4" th:unless="*{attendance}">
+						<td class="td_riyu" colspan="4" th:unless="${row.attendance}">
 							<div>未登録</div>
 						</td>
 					</tr>
 			   		<tr class="list_tr sum_tr">
-			   			<td class="td_name">3人</td>
-			   			<td class="td_am">3人</td>
+			   			<td class="td_name" th:text="*{totalEmployees} + '人'"></td>
+			   			<td class="td_am" th:text="*{totalAmAttendanceCount} + '人'"></td>
 			   			<td class="td_riyu"></td>
-			   			<td class="td_pm">2人</td>
+			   			<td class="td_pm" th:text="*{totalPmAttendanceCount} + '人'"></td>
 			   			<td class="td_riyu"></td>
 			   		</tr>
 				</table>

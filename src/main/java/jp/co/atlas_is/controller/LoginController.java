@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.time.YearMonth;
 import java.util.Optional;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +45,6 @@ public class LoginController {
 	 */
 	@GetMapping("/top")
 	public ModelAndView topForm(Principal principal, Model model) {
-		Authentication authentication = (Authentication) principal;
-		String username = authentication.getName();
-
 		// トップ画面アクセス時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
@@ -61,7 +57,6 @@ public class LoginController {
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
-		mav.addObject("username", username);
 		return mav;
 
 	}

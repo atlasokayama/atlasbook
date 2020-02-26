@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class MasterForm {
+public class MasterForm extends BaseForm{
 	/** 社員NO */
 	private int emp_no;
 

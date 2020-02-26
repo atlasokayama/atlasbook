@@ -39,6 +39,7 @@ public class ListService {
 
 	public EditForm getAttendanceInfo(YearMonth targetMonth, String targetName) {
 		EditForm edit = new EditForm();
+		edit.setTargetMonth(targetMonth);
 
 		// DBコネクションを取得
 		try (Connection con = DbUtil.getConnection()) {

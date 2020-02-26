@@ -40,6 +40,7 @@ public class EditController {
 		// 出欠一覧フォーム
 		// 一覧情報を検索
 		form.setAttendanceInfoList(LoginService.getLoginList(input.getTargetMonth()));
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
@@ -47,13 +48,14 @@ public class EditController {
 	}
 
 	@RequestMapping(params = "modoru", method = RequestMethod.POST)
-	ModelAndView modoru(@Validated @ModelAttribute EditForm input, Errors errors) {
+	ModelAndView modoru(@ModelAttribute EditForm input) {
 		// 登録成功時は一覧画面へ遷移
 		ListForm form = new ListForm();
 
 		// 出欠一覧フォーム
 		// 一覧情報を検索
 		form.setAttendanceInfoList(LoginService.getLoginList(input.getTargetMonth()));
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
