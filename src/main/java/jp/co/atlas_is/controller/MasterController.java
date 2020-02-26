@@ -58,6 +58,7 @@ public class MasterController {
 		list = service.getEmployeeList();
 
 		form.setAttendanceInfoList(list);
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("master", "form", form);

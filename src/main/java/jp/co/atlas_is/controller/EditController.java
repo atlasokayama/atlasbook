@@ -69,6 +69,7 @@ public class EditController {
 		// 戻る時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
+		form.setTargetMonth(input.getTargetMonth());
 
 		EditService service = new EditService();
 

@@ -54,6 +54,7 @@ public class AddEmpController {
 		// 出欠一覧フォーム
 		// 一覧情報を検索
 		form.setAttendanceInfoList(LoginService.getLoginList(input.getTargetMonth()));
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
