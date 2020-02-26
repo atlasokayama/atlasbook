@@ -7,6 +7,7 @@
 	<body th:object="${form}">
 	    <header class="header">
 			<form name="modoruForm" method="post" th:action="@{addEmp}">
+				<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
 				<input type="image" src="/images/modoru.png" th:src="@{/images/modoru.png}" alt="マスタ管理画面へ" name="modoru" class="modoru" />
 			</form>
 		<h1 class="midasi">月例出欠</h1>
@@ -32,6 +33,7 @@
 				<form method="post" th:action="@{addEmp}">
 					<p>名前</p>
 					<input type ="text" name="addNamae">
+					<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
 					<input type="submit" name="add" value="追加">
 				</form>
 			</div>

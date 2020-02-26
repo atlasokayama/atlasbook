@@ -75,7 +75,9 @@ public class EditController {
 
 		service.attendanceEdit(input);
 
-		// TODO：更新後の再検索処理
+		// 再検索
+		form.setAttendanceInfoList(LoginService.getLoginList(input.getTargetMonth()));
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);

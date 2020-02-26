@@ -26,15 +26,12 @@ public class EditService {
 			PreparedStatement stmt = con.prepareStatement(sql);
 
 			// Insert
-			// TODO：画面から情報を受け取っていないので要修正
-//			stmt.setInt(1, model.getEmp_no());  
-			stmt.setInt(1, 1);
+			stmt.setInt(1, model.getEmp_no());  
 			stmt.setBoolean(2, model.isAm_attend());
 			stmt.setString(3, model.getAm_reason());
 			stmt.setBoolean(4, model.isPm_attend());
 			stmt.setString(5, model.getPm_reason());
-			// TODO：画面から情報を受け取っていないので要修正
-			stmt.setDate(6, Date.valueOf("2019-12-01"));
+			stmt.setDate(6, Date.valueOf(model.getTargetMonth() + "-01"));
 
 			// Update
 			stmt.setBoolean(7, model.isAm_attend());

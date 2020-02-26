@@ -40,6 +40,7 @@ public class AddEmpController {
 		// 登録成功時は一覧画面へ遷移
 		// formを作成
 		ListForm form = new ListForm();
+		form.setTargetMonth(input.getTargetMonth());
 
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("master", "form", form);

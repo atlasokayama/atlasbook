@@ -22,6 +22,8 @@
 		<div class="contents">
 			<div class="wrap">
 				<form name="editForm" method="post" th:action="@{edit}">
+					<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
+					<input type="hidden" name="emp_no" th:value="*{emp_no}" >
 					<p class="edit_namae" th:text="*{emp_name}"></p>
 					<table class="edit_table">
 						<tr class="edit_tr">

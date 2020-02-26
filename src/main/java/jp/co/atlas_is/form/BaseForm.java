@@ -13,8 +13,12 @@ public class BaseForm {
 	private String dispYearMonth;
 
 	public String getDispYearMonth() {
-		DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy年MM月");
-		return targetMonth.format(dtf1);
+		if (targetMonth != null) {
+			DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy年MM月");
+			return targetMonth.format(dtf1);			
+		} else {
+			return "";
+		}
 	}
 	
 }

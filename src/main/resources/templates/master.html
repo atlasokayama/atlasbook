@@ -22,6 +22,7 @@
 		<div class="contents">
 			<div class="wrap">
 				<form method="post" th:action="@{master}">
+					<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
 					<p class="emp-cnt">6人</p>	
 					<input type="submit" name="addEmp" value="＋" class="addEmp-button">
 					<ul class="ul-emp">
