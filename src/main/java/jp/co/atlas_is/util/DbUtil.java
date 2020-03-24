@@ -10,10 +10,17 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
+/**
+ * DB関連の共通処理クラス
+ */
 public class DbUtil {
 
+	/**
+	 * コネクション取得処理
+	 * 
+	 * @return コネクション
+	 */
 	public static Connection getConnection() throws SQLException, IOException {
-
 		// 設定ファイルの読み込み
 		Resource resource = new ClassPathResource("/application.properties");
 		Properties props = PropertiesLoaderUtils.loadProperties(resource);

@@ -23,11 +23,11 @@
 			<div class="wrap">
 				<form method="post" th:action="@{master}">
 					<input type="hidden" name="targetMonth" th:value="*{targetMonth}" >
-					<p class="emp-cnt">6人</p>	
+					<p class="emp-cnt" th:text="*{totalEmployees} + '人'"></p>	
 					<input type="submit" name="addEmp" value="＋" class="addEmp-button">
 					<ul class="ul-emp">
 						<li th:each="row : *{attendanceInfoList}" th:object="${row}" class="li-emp">
-							<input type="checkbox" name="chk" th:text="*{emp_name}" class="chkbox">
+							<input type="checkbox" name="checks" th:text="*{emp_name}" class="chkbox" th:value="*{emp_no}">
 						</li>
 					</ul>
 					<p class="btn"><input type="submit" name="delEmp" value="削除"></p>

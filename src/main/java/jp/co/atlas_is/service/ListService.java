@@ -7,10 +7,22 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.util.DbUtil;
 
+/**
+ * 出欠一覧画面のサービスクラス
+ */
+@Service
 public class ListService {
+	
+	/**
+	 * 出欠一覧情報取得処理
+	 * 
+	 * @return 出欠一覧
+	 */
 	public List<EditForm> getEmployeeList() {
 		List<EditForm> list = new ArrayList<EditForm>();
 
@@ -37,6 +49,11 @@ public class ListService {
 		return list;
 	}
 
+	/**
+	 * 出欠情報取得処理
+	 * 
+	 * @return 出欠情報
+	 */
 	public EditForm getAttendanceInfo(YearMonth targetMonth, String targetName) {
 		EditForm edit = new EditForm();
 		edit.setTargetMonth(targetMonth);

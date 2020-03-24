@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 一覧画面フォーム
+ * 出欠一覧画面フォーム
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -14,10 +14,17 @@ public class ListForm extends BaseForm {
 	/** 出欠情報 */
 	private List<EditForm> attendanceInfoList;
 
+	/** 社員数 */
 	@SuppressWarnings("unused")
 	private int totalEmployees;
 	
+	/**
+	 * 社員数取得処理
+	 * 
+	 * @return 社員数
+	 */
 	public int getTotalEmployees() {
+		// 出欠一覧リストが空なら0、そうでないなら件数を返却
 		if (attendanceInfoList == null || attendanceInfoList.isEmpty()) {
 			return 0;
 		} else {
@@ -26,10 +33,17 @@ public class ListForm extends BaseForm {
 	}
 
 
+	/** AM出席者数 */
 	@SuppressWarnings("unused")
 	private int totalAmAttendanceCount;
 
+	/**
+	 * AM出席者数取得処理
+	 * 
+	 * @return AM出席者数
+	 */
 	public int getTotalAmAttendanceCount() {
+		// 出欠一覧リストが空なら0、そうでないならAM出席件数を返却
 		if (attendanceInfoList == null || attendanceInfoList.isEmpty()) {
 			return 0;
 		} else {
@@ -37,10 +51,17 @@ public class ListForm extends BaseForm {
 		}
 	}
 
+	/** PM出席者数 */
 	@SuppressWarnings("unused")
 	private int totalPmAttendanceCount;
 	
+	/**
+	 * PM出席者数取得処理
+	 * 
+	 * @return PM出席者数
+	 */
 	public int getTotalPmAttendanceCount() {
+		// 出欠一覧リストが空なら0、そうでないならPM出席件数を返却
 		if (attendanceInfoList == null || attendanceInfoList.isEmpty()) {
 			return 0;
 		} else {
