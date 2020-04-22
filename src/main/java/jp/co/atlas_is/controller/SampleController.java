@@ -1,9 +1,11 @@
 package jp.co.atlas_is.controller;
 
+import java.time.YearMonth;
 import java.util.Optional;
 
 import javax.websocket.server.PathParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
+import jp.co.atlas_is.service.LoginService;
 import jp.co.atlas_is.service.SampleService;
 import jp.co.atlas_is.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SampleController {
     
+	@Autowired
+	LoginService loginSv;
+
 	/**
 	 * ajax通信処理
 	 * 
@@ -88,5 +94,25 @@ public class SampleController {
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("list", "form", form);
 		return mav;
+	}
+	
+	/**
+	 * ajax通信処理
+	 * 
+	 * @param empNo
+	 * @return 検索結果
+	 */
+	@RequestMapping(value = "/getTargetList", method = RequestMethod.GET)
+	@ResponseBody
+	public String getTargetListData(@PathParam("targetYearMonth") String targetYearMonth) {
+		String ret = "";
+		try {
+			YearMonth target = YearMonth.of(Integer.parseInt(targetYearMonth.substring(0, 4)), 
+					Integer.parseInt(targetYearMonth.substring(4, 6)));
+			ret = JsonUtil.stringify(loginSv.getLoginList(target));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 }
