@@ -19,16 +19,16 @@
 			<div class="wrap">
 				<div class="year-month">
 					<div class="year-month_flex">
-					<form name="yearMonthBack" method="post" th:action="@{list}" class="year-month_form">
-						<input type="image" src="/images/back.png" th:src="@{/images/back.png}" alt="前の月へ" name="year-month_back" class="year-month_ctl year-month_back" />
-					</form>
+					<div class="year-month_form">
+						<input type="image" src="/images/back.png" th:src="@{/images/back.png}" alt="前の月へ" id="prevMonth" name="year-month_back" class="year-month_ctl year-month_back" />
+					</div>
 					<p class="year-month_disp" th:text="*{dispYearMonth}"></p>
-					<form name="yearMonthNext" method="post" th:action="@{list}" class="year-month_form">
-						<input type="image" src="/images/next.png" th:src="@{/images/next.png}" alt="次の月へ" name="year-month_next" class="year-month_ctl year-month_next" />
-					</form>
+					<div class="year-month_form">
+						<input type="image" src="/images/next.png" th:src="@{/images/next.png}" alt="次の月へ" id="nextMonth" name="year-month_next" class="year-month_ctl year-month_next" />
+					</div>
 					</div>
 				</div>
-				<table class="list_table">
+				<table class="list_table" id="list_table">
 					<tr class="list_tr">
 			   			<th class="th_name"></th>
 			   			<th class="th_am">AM</th>
@@ -37,7 +37,7 @@
 			   			<th class="th_riyu">欠席理由</th>
 			   		</tr>
 					<!--/* データ行部 Start */-->
-					<tr th:each="row,rowStat : *{attendanceInfoList}"  class="list_tr">
+					<tr th:each="row,rowStat : *{attendanceInfoList}"  class="list_tr" th:id="${row.emp_no}">
 						<td class="td_name">
 							<form method="post" name="nameForm" th:action="@{list}">
 								<input type="hidden" name="edit" th:value="${row.emp_name} + ',' + *{dispYearMonth}" >

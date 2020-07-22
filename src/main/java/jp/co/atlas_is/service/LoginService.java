@@ -7,17 +7,24 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.util.DbUtil;
 
+/**
+ * ログイン画面のサービスクラス
+ */
+@Service
 public class LoginService {
 
 	/**
 	 * 一覧情報取得処理
 	 * 
+	 * @param target
 	 * @return List<EditForm>
 	 */
-	public static List<EditForm> getLoginList(YearMonth target) {
+	public List<EditForm> getLoginList(YearMonth target) {
 		List<EditForm> list = new ArrayList<EditForm>();
 
 		try (Connection con = DbUtil.getConnection()) {

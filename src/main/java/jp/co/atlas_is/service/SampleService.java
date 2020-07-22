@@ -6,9 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.util.DbUtil;
 
+@Service
 public class SampleService {
 
 	/**

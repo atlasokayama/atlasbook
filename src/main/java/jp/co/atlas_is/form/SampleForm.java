@@ -3,11 +3,13 @@ package jp.co.atlas_is.form;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 出欠情報DTO
+ * サンプル画面Form
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class SampleForm  extends BaseForm{
 
 	/** 職員番号 */
