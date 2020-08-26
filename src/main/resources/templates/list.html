@@ -20,11 +20,17 @@
 				<div class="year-month">
 					<div class="year-month_flex">
 					<div class="year-month_form">
-						<input type="image" src="/images/back.png" th:src="@{/images/back.png}" alt="前の月へ" id="prevMonth" name="year-month_back" class="year-month_ctl year-month_back" />
+						<form method="post" name="nameForm" th:action="@{list}">
+							<input type="hidden" name="move" th:value="'-1,' + *{targetMonth}" >
+							<input type="image" th:href="'javascript:nameForm[0].submit()'" src="/images/back.png" th:src="@{/images/back.png}" alt="前の月へ" id="prevMonth" name="year-month_back" class="year-month_ctl year-month_back" />
+						</form>
 					</div>
 					<p class="year-month_disp" th:text="*{dispYearMonth}"></p>
 					<div class="year-month_form">
-						<input type="image" src="/images/next.png" th:src="@{/images/next.png}" alt="次の月へ" id="nextMonth" name="year-month_next" class="year-month_ctl year-month_next" />
+						<form method="post" name="nameForm" th:action="@{list}">
+							<input type="hidden" name="move" th:value="'1,' + *{targetMonth}" >
+							<input type="image" th:href="'javascript:nameForm[0].submit()'" src="/images/next.png" th:src="@{/images/next.png}" alt="次の月へ" id="nextMonth" name="year-month_next" class="year-month_ctl year-month_next" />
+						</form>
 					</div>
 					</div>
 				</div>

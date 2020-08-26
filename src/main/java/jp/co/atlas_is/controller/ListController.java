@@ -13,6 +13,7 @@ import jp.co.atlas_is.form.EditForm;
 import jp.co.atlas_is.form.ListForm;
 import jp.co.atlas_is.form.MasterForm;
 import jp.co.atlas_is.service.ListService;
+import jp.co.atlas_is.service.LoginService;
 
 /**
  * 出欠一覧画面のコントローラクラス
@@ -24,6 +25,9 @@ public class ListController {
 	// サービスクラスをDI
 	@Autowired
 	ListService listSv;
+
+	@Autowired
+	LoginService loginSv;
 
 	/**
 	 * マスタ管理画面遷移処理
@@ -66,5 +70,30 @@ public class ListController {
 		ModelAndView mav = new ModelAndView("edit", "form", form);
 		return mav;
 	}
+	/**
+	 * 次月/前月ボタン処理
+	 * 
+	 * @param targetValue
+	 * @return モデル／ビュー
+	 */
+	@RequestMapping(params = "move", method = RequestMethod.POST)
+	ModelAndView move(@ModelAttribute("move") String targetValue) {
+		// 次月/前月ボタン押下時は出欠一覧画面へ遷移
+		ListForm form = new ListForm();
 
+		// 出欠一覧フォームを作成
+		// 出欠一覧情報を検索して格納
+		// 引数を","で分割して対象名、対象年月に分解
+		String[] values = targetValue.split(",", -1);
+		YearMonth target = YearMonth.of(Integer.parseInt(values[1].substring(0, 4)), 
+				Integer.parseInt(values[1].substring(5, 7)));
+		// 次月・前月を算出
+		target = target.plusMonths(Long.valueOf(values[0]));
+		form.setAttendanceInfoList(loginSv.getLoginList(target));
+		form.setTargetMonth(target);
+
+		// 遷移先情報を設定
+		ModelAndView mav = new ModelAndView("list", "form", form);
+		return mav;
+	}
 }
