@@ -2,14 +2,9 @@ package jp.co.atlas_is.form;
 
 import java.util.List;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 /**
  * 出欠一覧画面フォーム
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class ListForm extends BaseForm {
 	/** 出欠情報 */
 	private List<EditForm> attendanceInfoList;
@@ -68,4 +63,24 @@ public class ListForm extends BaseForm {
 			return (int) attendanceInfoList.stream().filter(r -> r.isPm_attend()).count();
 		}
 	}
+
+	public List<EditForm> getAttendanceInfoList() {
+		return attendanceInfoList;
+	}
+
+	public void setAttendanceInfoList(List<EditForm> attendanceInfoList) {
+		this.attendanceInfoList = attendanceInfoList;
+	}
+
+	public void setTotalEmployees(int totalEmployees) {
+		this.totalEmployees = totalEmployees;
+	}
+
+	public void setTotalAmAttendanceCount(int totalAmAttendanceCount) {
+		this.totalAmAttendanceCount = totalAmAttendanceCount;
+	}
+
+	public void setTotalPmAttendanceCount(int totalPmAttendanceCount) {
+		this.totalPmAttendanceCount = totalPmAttendanceCount;
+	}	
 }

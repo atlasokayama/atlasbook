@@ -21,10 +21,8 @@ import jp.co.atlas_is.form.ListForm;
 import jp.co.atlas_is.service.LoginService;
 import jp.co.atlas_is.service.SampleService;
 import jp.co.atlas_is.util.JsonUtil;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 public class SampleController {
     
 	@Autowired
@@ -58,11 +56,6 @@ public class SampleController {
 	public ModelAndView showLoginPage(@RequestParam Optional<String> error) {
 		// 出欠入力画面に表示する情報
 		EditForm form = new EditForm();
-		log.trace("trace message");
-		log.debug("debug message");
-		log.info("info message");
-		log.warn("warn message");
-		log.error("error message");
 		// 遷移先情報を設定
 		ModelAndView mav = new ModelAndView("sample", "form", form);
 		return mav;

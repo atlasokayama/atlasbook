@@ -3,13 +3,10 @@ package jp.co.atlas_is.form;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
-import lombok.Data;
-
 /**
  * BaseForm
  * 各Formクラスの基底クラス
  */
-@Data
 public class BaseForm {
 	private YearMonth targetMonth;
 
@@ -30,6 +27,18 @@ public class BaseForm {
 		} else {
 			return "";
 		}
+	}
+
+	public YearMonth getTargetMonth() {
+		return targetMonth;
+	}
+
+	public void setTargetMonth(YearMonth targetMonth) {
+		this.targetMonth = targetMonth;
+	}
+
+	public void setDispYearMonth(String dispYearMonth) {
+		this.dispYearMonth = dispYearMonth;
 	}
 	
 }
